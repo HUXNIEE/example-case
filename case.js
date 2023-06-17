@@ -1,3 +1,8 @@
+/*ᴄᴏᴅᴇᴅ ʙʏ ᴢᴇᴇᴏɴᴇ
+ʀᴇᴄᴏᴅᴇᴅ ʙʏ ʜᴜsɴɪ
+©ʜᴜsɴɪ 2023
+ᴀʟʟᴀᴀɴ ᴍᴜᴛʜᴇᴇᴇ...
+*/
 require('./settings')
 const {
     BufferJSON,
@@ -63,21 +68,21 @@ const threshold = 0.72
 const nou = require('node-os-utils');
 
 const _family100 = {}
-const tebakgambar = {}
-const tebakkata = {}
-const tebakbendera = {}
+const guessthepicture = {}
+const guesstheword = {}
+const guesstheflag = {}
 const siapaaku = {}
-const tebakkalimat = {}
+const guessthesentence = {}
 const caklontong = {}
-const susunkata = {}
-const tekateki = {}
-const tebakkabupaten = {}
-const tebakkota = {}
-const tebakkimia = {}
-const tebaklirik = {}
-const tebaktebakan = {}
+const arrangewords = {}
+const puzzles = {}
+const guessdistrict = {}
+const guessthecity = {}
+const guesschemistry = {}
+const guessthelyrics = {}
+const riddles = {}
 
-module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame, antilink2, antiwame2, set_welcome_db, set_left_db, set_open, set_close, _welcome, _left) => {
+module.exports = thoppi = async (thoppi, m, chatUpdate, store, antilink, antiwame, antilink2, antiwame2, set_welcome_db, set_left_db, set_open, set_close, _welcome, _left) => {
     try {
         var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : '' //omzee
         var budy = (typeof m.text == 'string' ? m.text : '')
@@ -85,18 +90,18 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
         const prefix = isCmd ? budy[0] : ''
         const command = isCmd ? body.slice(1).trim().split(' ').shift().toLowerCase() : ''
         const args = body.trim().split(/ +/).slice(1)
-        const pushname = m.pushName || "No Name"
-        const botNumber = await alpha.decodeJid(alpha.user.id)
-        const tanggal = moment().tz("Asia/Makassar").format("dddd, ll")
-        const jam = moment(Date.now()).tz('Asia/Makassar').locale('id').format('HH:mm:ss z')
-        const salam = moment(Date.now()).tz("Asia/Makassar").locale('id').format('a')
-        const isCreator = ["62887435047326@s.whatsapp.net", botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+        const pushname = m.pushName || "CHUNNAMB BRO"
+        const botNumber = await thoppi.decodeJid(thoppi.user.id)
+        const tanggal = moment().tz("Asia/Kolkata").format("dddd, ll")
+        const jam = moment(Date.now()).tz('Asia/Kolkata').locale('id').format('HH:mm:ss z')
+        const salam = moment(Date.now()).tz("Asia/Kolkata").locale('id').format('a')
+        const isCreator = ["919567749726@s.whatsapp.net", botNumber, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
         const text = q = args.join(" ")
         const quoted = m.quoted ? m.quoted : m
         const from = m.chat
         const mime = (quoted.msg || quoted).mimetype || ''
         const isMedia = /image|video|sticker|audio/.test(mime)
-        const groupMetadata = m.isGroup ? await alpha.groupMetadata(m.chat).catch(e => {}) : ''
+        const groupMetadata = m.isGroup ? await thoppi.groupMetadata(m.chat).catch(e => {}) : ''
         const groupName = m.isGroup ? groupMetadata.subject : ''
         const participants = m.isGroup ? await groupMetadata.participants : ''
         const groupAdmins = m.isGroup ? await getGroupAdmins(participants) : ''
@@ -108,13 +113,13 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
         const isAntiWame2 = antiwame2.includes(m.chat) ? true : false
         const isWelcome = _welcome.includes(m.chat)
         const isLeft = _left.includes(m.chat)
-        const time = moment(Date.now()).tz('Asia/Jakarta').locale('id').format('HH:mm:ss z')
+        const time = moment(Date.now()).tz('Asia/Kolkata').locale('id').format('HH:mm:ss z')
 
         const reply = (text) => {
-            alpha.sendFakeLink(m.chat, text, salam, footer_text, pp_bot, myweb, pushname, m)
+            thoppi.sendFakeLink(m.chat, text, salam, footer_text, pp_bot, myweb, pushname, m)
         }
         const getStyle = (style, style2) => {
-            let listt = `*${style2} Yg Kamu Masukkan Salah*\n\n_Berikut List ${style2} Yg Benar, Total_ *${style}* _${style2}_\n\n`
+            let listt = `*${style2} This Is Wrong*\n\n_Here's The List ${style2} That's Right, Total_ *${style}* _${style2}_\n\n`
             no = 0
             for (var i = 0; i < style.length; i++) {
                 no += 1
@@ -122,15 +127,15 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
             }
             reply(listt)
         }
-        const jawabanBenar = (tebak, exp) => {
-            return `🎮 ${tebak} 🎮\n\nJawaban Benar 🎉\n+${exp} XP`
+        const correctanswer = (tebak, exp) => {
+            return `🎮 ${tebak} 🎮\n\n *ᴄᴏʀʀᴇᴄᴛ ᴀɴsᴡᴇʀ 🎉* \n+${exp} XP`
         }
         const waktuHabis = (jawaban) => {
-            return `Waktu Habis\nJawaban:  ${jawaban}`
+            return `ᴛɪᴍᴇ ᴏᴜᴛ\nᴀɴsᴡᴇʀ:  ${jawaban}`
         }
         async function getGcName(groupID) {
             try {
-                let data_name = await alpha.groupMetadata(groupID)
+                let data_name = await thoppi.groupMetadata(groupID)
                 return data_name.subject
             }
             catch (err) {
@@ -138,22 +143,22 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
             }
         }
         if (m.message) {
-            alpha.readMessages([m.key])
+            thoppi.readMessages([m.key])
             console.log(chalk.black(chalk.bgWhite('[ CMD ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> From'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> In'), chalk.green(m.isGroup ? pushname : 'Chat Pribadi', m.chat))
         }
 
         if (isAntiLink) {
             if (budy.match(`chat.whatsapp.com`)) {
-                reply(`*「 ANTI LINK 」*\n\nLink grup detected, maaf kamu akan di kick !`)
-                if (!isBotAdmins) return reply(`Upsss... gajadi, bot bukan admin`)
-                let gclink = (`https://chat.whatsapp.com/` + await alpha.groupInviteCode(m.chat))
+                reply(`*「 ANTI LINK 」*\n\n ᴀɴᴛɪ ʟɪɴᴋ ᴅᴇᴛᴇᴄᴛᴇᴅ,\n sᴏʀʀʏ ʏᴏᴜ ᴡɪʟʟ ʙᴇ ᴋɪᴄᴋᴇᴅ👋`)
+                if (!isBotAdmins) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ʙᴏᴛs ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴs`)
+                let gclink = (`https://chat.whatsapp.com/` + await thoppi.groupInviteCode(m.chat))
                 let isLinkThisGc = new RegExp(gclink, 'i')
                 let isgclink = isLinkThisGc.test(m.text)
-                if (isgclink) return reply(`Upsss... gak jadi, untung link gc sendiri`)
-                if (isAdmins) return reply(`Upsss... gak jadi, kasian adminnya klo di kick`)
-                if (isCreator) return reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                if (m.key.fromMe) return reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                await alpha.sendMessage(m.chat, {
+                if (isgclink) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ғᴏʀᴛᴜɴᴀᴛᴇʟʏ ᴛʜᴇ ɢᴄ ʟɪɴᴋ ɪᴛ'sᴇʟғ`)
+                if (isAdmins) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴛʜᴇ ᴀᴅᴍɪɴ ᴋɪᴄᴋs ɪᴛ`)
+                if (isCreator) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                if (m.key.fromMe) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                await thoppi.sendMessage(m.chat, {
                     delete: {
                         remoteJid: m.chat,
                         fromMe: false,
@@ -161,20 +166,20 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
                         participant: m.key.participant
                     }
                 })
-                alpha.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+                thoppi.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
             }
         }
         if (isAntiLink2) {
             if (budy.match(`chat.whatsapp.com`)) {
-                if (!isBotAdmins) return //reply(`Upsss... gajadi, bot bukan admin`)
-                let gclink = (`https://chat.whatsapp.com/` + await alpha.groupInviteCode(m.chat))
+                if (!isBotAdmins) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ʙᴏᴛs ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴs`)
+                let gclink = (`https://chat.whatsapp.com/` + await thoppi.groupInviteCode(m.chat))
                 let isLinkThisGc = new RegExp(gclink, 'i')
                 let isgclink = isLinkThisGc.test(m.text)
-                if (isgclink) return //reply(`Upsss... gak jadi, untung link gc sendiri`)
-                if (isAdmins) return //reply(`Upsss... gak jadi, kasian adminnya klo di kick`)
-                if (isCreator) return //reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                if (m.key.fromMe) return //reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                await alpha.sendMessage(m.chat, {
+                if (isgclink) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ғᴏʀᴛᴜɴᴀᴛᴇʟʏ ᴛʜᴇ ɢᴄ ʟɪɴᴋ ɪᴛ'sᴇʟғ`)
+                if (isAdmins) return //reply(` ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴛʜᴇ ᴀᴅᴍɪɴ ᴋɪᴄᴋs ɪᴛ`)
+                if (isCreator) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                if (m.key.fromMe) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                await thoppi.sendMessage(m.chat, {
                     delete: {
                         remoteJid: m.chat,
 
@@ -187,12 +192,12 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
         }
         if (isAntiWame) {
             if (budy.match(`wa.me/`)) {
-                reply(`*「 ANTI WA ME 」*\n\nWa Me detected, maaf kamu akan di kick !`)
-                if (!isBotAdmins) return reply(`Upsss... gajadi, bot bukan admin`)
-                if (isAdmins) return reply(`Upsss... gak jadi, kasian adminnya klo di kick`)
-                if (isCreator) return reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                if (m.key.fromMe) return reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                await alpha.sendMessage(m.chat, {
+                reply(`*「 ANTI WA ME 」*\n\n ᴀɴᴛɪ ᴡᴀ ᴍᴇ ᴅᴇᴛᴇᴄᴛᴇᴅ, sᴏʀʀʏ ʏᴏᴜ ᴡɪʟʟ ʙᴇ ᴋɪᴄᴋᴇᴅ`)
+                if (!isBotAdmins) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ʙᴏᴛs ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴs`)
+                if (isAdmins) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴛʜᴇ ᴀᴅᴍɪɴ ᴋɪᴄᴋs ɪᴛ`)
+                if (isCreator) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                if (m.key.fromMe) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                await thoppi.sendMessage(m.chat, {
                     delete: {
                         remoteJid: m.chat,
 
@@ -201,16 +206,16 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
                         participant: m.key.participant
                     }
                 })
-                alpha.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+                thoppi.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
             }
         }
         if (isAntiWame2) {
             if (budy.match(`wa.me/`)) {
-                if (!isBotAdmins) return //reply(`Upsss... gajadi, bot bukan admin`)
-                if (isAdmins) return //reply(`Upsss... gak jadi, kasian adminnya klo di kick`)
-                if (isCreator) return //reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                if (m.key.fromMe) return //reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                await alpha.sendMessage(m.chat, {
+                if (!isBotAdmins) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ʙᴏᴛs ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴs`)
+                if (isAdmins) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴛʜᴇ ᴀᴅᴍɪɴ ᴋɪᴄᴋs ɪᴛ`)
+                if (isCreator) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                if (m.key.fromMe) return //reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                await thoppi.sendMessage(m.chat, {
                     delete: {
                         remoteJid: m.chat,
 
@@ -224,11 +229,11 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
         if (isAntiWame) {
             if (budy.includes((`Wa.me/`) || (`Wa.me/`))) {
                 reply(`*「 ANTI WA ME 」*\n\nWa Me detected, maaf kamu akan di kick !`)
-                if (!isBotAdmins) return reply(`Upsss... gajadi, bot bukan admin`)
-                if (isAdmins) return reply(`Upsss... gak jadi, kasian adminnya klo di kick`)
-                if (isCreator) return reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                if (m.key.fromMe) return reply(`Upsss... gak jadi, kasian owner ku klo di kick`)
-                alpha.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+                if (!isBotAdmins) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ʙᴏᴛs ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴs`)
+                if (isAdmins) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴛʜᴇ ᴀᴅᴍɪɴ ᴋɪᴄᴋs ɪᴛ`)
+                if (isCreator) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                if (m.key.fromMe) return reply(`ɪᴛ ᴅᴏᴇsɴ'ᴛ ᴡᴏʀᴋ, ɪᴛ's ᴀ sʜᴀᴍᴇ ᴍʏ ᴏᴡɴᴇʀ ɢᴏᴛ ᴋɪᴄᴋᴇᴅ`)
+                thoppi.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
             }
         }
 
@@ -244,76 +249,76 @@ module.exports = alpha = async (alpha, m, chatUpdate, store, antilink, antiwame,
             }
             let isWin = room.terjawab.length === room.terjawab.filter(v => v).length
             let caption = `
-Jawablah Pertanyaan Berikut :\n${room.soal}\n\n\nTerdapat ${room.jawaban.length} Jawaban ${room.jawaban.find(v => v.includes(' ')) ? `(beberapa Jawaban Terdapat Spasi)` : ''}
-${isWin ? `Semua Jawaban Terjawab` : isSurender ? 'Menyerah!' : ''}
+ᴀɴsᴡᴇʀ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ ϙᴜᴇsᴛɪᴏɴs :\n${room.soal}\n\n\nᴛʜᴇʀᴇ ɪs ${room.jawaban.length} ᴀɴsᴡᴇʀ  ${room.jawaban.find(v => v.includes(' ')) ? `(beberapa ᴀɴsᴡᴇʀ ᴛʜᴇʀᴇ ɪs ᴀ sᴘᴀᴄᴇ)` : ''}
+${isWin ? `ᴀʟʟ ᴀɴsᴡᴇʀs ᴀɴsᴡᴇʀᴇᴅ` : isSurender ? 'ɢɪᴠᴇ ᴜᴘ!' : ''}
 ${Array.from(room.jawaban, (jawaban, index) => {
 return isSurender || room.terjawab[index] ? `(${index + 1}) ${jawaban} ${room.terjawab[index] ? '@' + room.terjawab[index].split('@')[0] : ''}`.trim() : false
 }).filter(v => v).join('\n')}
 ${isSurender ? '' : ``}`.trim()
-            alpha.sendTextWithMentions(m.chat, caption, m)
+            thoppi.sendTextWithMentions(m.chat, caption, m)
                 .then(mes => {
                     return _family100['family100' + m.chat].pesan = mesg
                 }).catch(_ => _)
             if (isWin || isSurender) delete _family100['family100' + m.chat]
         }
-        if (tebakgambar[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebakgambar[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebakgambar[m.chat][1]))
+        if (guessthepicture[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guessthepicture[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guessthepicture[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebakgambar',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guessthepicture',
                         buttonText: {
-                            displayText: "Tebakgambar"
+                            displayText: "guessthepicture"
                         },
                         type: 1
-                    }], jawabanBenar("Tebakgambar", tebakgambar[m.chat][2]), footer_text, m)
-                    clearTimeout(tebakgambar[m.chat][3])
-                    delete tebakgambar[m.chat]
+                    }], correctanswer("guessthepicture", guessthepicture[m.chat][2]), footer_text, m)
+                    clearTimeout(guessthepicture[m.chat][3])
+                    delete guessthepicture[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tega', 'Hint', '.ytega', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ!_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.guess', 'Hint', '.yguess', 'Nyerah', m)
             }
         }
-        if (tebakkata[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebakkata[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebakkata[m.chat][1]))
+        if (guesstheword[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guesstheword[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guesstheword[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebakkata',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guesstheword',
                         buttonText: {
-                            displayText: "Tebak Kata"
+                            displayText: "ɢᴜᴇss ᴛʜᴇ ᴡᴏʀᴅ"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Kata", tebakkata[m.chat][2]), footer_text, m)
-                    clearTimeout(tebakkata[m.chat][3])
-                    delete tebakkata[m.chat]
+                    }], correctanswer("ɢᴜᴇss ᴛʜᴇ ᴡᴏʀᴅ", guesstheword[m.chat][2]), footer_text, m)
+                    clearTimeout(guesstheword[m.chat][3])
+                    delete guesstheword[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.teka', 'Hint', '.yteka', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.guess', 'Hint', '.guess', 'Nyerah', m)
             }
         }
-        if (tebakbendera[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebakbendera[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebakbendera[m.chat][1]))
+        if (guesstheflag[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guesstheflag[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guesstheflag[m.chat][1]))
                 jawaban = json.name.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebakbendera',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guesstheflag',
                         buttonText: {
-                            displayText: "tebak bendera"
+                            displayText: "ɢᴜᴇss ᴛʜᴇ ғʟᴀɢ"
                         },
                         type: 1
-                    }], jawabanBenar("tebak bendera", tebakbendera[m.chat][2]), footer_text, m)
-                    clearTimeout(tebakbendera[m.chat][3])
-                    delete tebakbendera[m.chat]
+                    }], correctanswer("ɢᴜᴇss ᴛʜᴇ ғʟᴀɢ", guesstheflag[m.chat][2]), footer_text, m)
+                    clearTimeout(guesstheflag[m.chat][3])
+                    delete guesstheflag[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tebe', 'Hint', '.ytebe', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.tebe', 'Hint', '.ytebe', 'Nyerah', m)
             }
         }
         if (caklontong[m.chat] && !isCmd && m.quoted) {
@@ -321,59 +326,59 @@ ${isSurender ? '' : ``}`.trim()
                 let json = JSON.parse(JSON.stringify(caklontong[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
+                    await thoppi.sendButtonText(m.chat, [{
                         buttonId: '.caklontong',
                         buttonText: {
                             displayText: "Cak Lontong"
                         },
                         type: 1
-                    }], jawabanBenar("Cak Lontong", caklontong[m.chat][2]), footer_text, m)
+                    }], correctanswer("Cak Lontong", caklontong[m.chat][2]), footer_text, m)
                     clearTimeout(caklontong[m.chat][3])
                     delete caklontong[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.telo', 'Hint', '.ytelo', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.telo', 'Hint', '.ytelo', 'Nyerah', m)
             }
         }
-        if (susunkata[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == susunkata[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(susunkata[m.chat][1]))
+        if (arrangewords[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == arrangewords[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(arrangewords[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.susunkata',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.arrangewords',
                         buttonText: {
-                            displayText: "Susun Kata"
+                            displayText: "ᴀʀʀᴀɴɢᴇ ᴡᴏʀᴅs"
                         },
                         type: 1
-                    }], jawabanBenar("Susun Kata", susunkata[m.chat][2]), footer_text, m)
-                    clearTimeout(susunkata[m.chat][3])
-                    delete susunkata[m.chat]
+                    }], correctanswer("ᴀʀʀᴀɴɢᴇ ᴡᴏʀᴅs", arrangewords[m.chat][2]), footer_text, m)
+                    clearTimeout(arrangewords[m.chat][3])
+                    delete arrangewords[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tesuka', 'Hint', '.ytesuka', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.tesuka', 'Hint', '.ytesuka', 'Nyerah', m)
             }
         }
-        if (tebakkalimat[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebakkalimat[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebakkalimat[m.chat][1]))
+        if (guessthesentence[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guessthesentence[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guessthesentence[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebakkalimat',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guessthesentence',
                         buttonText: {
-                            displayText: "Tebak Kalimat"
+                            displayText: "ɢᴜᴇss ᴛʜᴇ sᴇɴᴛᴇɴᴄᴇ"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Kalimat", tebakkalimat[m.chat][2]), footer_text, m)
-                    clearTimeout(tebakkalimat[m.chat][3])
-                    delete tebakkalimat[m.chat]
+                    }], correctanswer("ɢᴜᴇss ᴛʜᴇ sᴇɴᴛᴇɴᴄᴇ", guessthesentence[m.chat][2]), footer_text, m)
+                    clearTimeout(guessthesentence[m.chat][3])
+                    delete guessthesentence[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tekatu', 'Hint', '.ytekatu', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.guessthesentence', 'Hint', '.guessthesentence', 'Nyerah', m)
             }
         }
         if (siapaaku[m.chat] && !isCmd && m.quoted) {
@@ -381,143 +386,143 @@ ${isSurender ? '' : ``}`.trim()
                 let json = JSON.parse(JSON.stringify(siapaaku[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebaksiapa',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guesswho',
                         buttonText: {
-                            displayText: "Tebak Siapa"
+                            displayText: "ɢᴜᴇss ᴡʜᴏ"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Siapa", siapaaku[m.chat][2]), footer_text, m)
+                    }], correctanswer("ɢᴜᴇss ᴡʜᴏ", siapaaku[m.chat][2]), footer_text, m)
                     clearTimeout(siapaaku[m.chat][3])
                     delete siapaaku[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tesi', 'Hint', '.ytesi', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.tesi', 'Hint', '.ytesi', 'Nyerah', m)
             }
         }
-        if (tekateki[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tekateki[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tekateki[m.chat][1]))
+        if (puzzles[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == puzzles[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(puzzles[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tekateki',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.puzzles',
                         buttonText: {
-                            displayText: "Teka Teki"
+                            displayText: "ᴘᴜᴢᴢʟᴇs"
                         },
                         type: 1
-                    }], jawabanBenar("Teka Teki", tekateki[m.chat][2]), footer_text, m)
-                    clearTimeout(tekateki[m.chat][3])
-                    delete tekateki[m.chat]
+                    }], correctanswer("ᴘᴜᴢᴢʟᴇs", puzzles[m.chat][2]), footer_text, m)
+                    clearTimeout(puzzles[m.chat][3])
+                    delete puzzles[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tete', 'Hint', '.ytete', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.tete', 'Hint', '.ytete', 'Nyerah', m)
             }
         }
-        if (tebakkabupaten[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebakkabupaten[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebakkabupaten[m.chat][1]))
+        if (guessdistrict[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guessdistrict[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guessdistrict[m.chat][1]))
                 jawaban = json.title.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebakkabupaten',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guessdistrict',
                         buttonText: {
-                            displayText: "Tebak Kabupaten"
+                            displayText: "ɢᴜᴇss ᴅɪsᴛʀɪᴄᴛ"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Kabupaten", tebakkabupaten[m.chat][2]), footer_text, m)
-                    clearTimeout(tebakkabupaten[m.chat][3])
-                    delete tebakkabupaten[m.chat]
+                    }], correctanswer("ɢᴜᴇss ᴅɪsᴛʀɪᴄᴛ", guessdistrict[m.chat][2]), footer_text, m)
+                    clearTimeout(guessdistrict[m.chat][3])
+                    delete guessdistrict[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tekabu', 'Hint', '.ytekabu', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.guessbu', 'Hint', '.guessbu', 'Nyerah', m)
             }
         }
-        if (tebakkota[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebakkota[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebakkota[m.chat][1]))
+        if (guessthecity[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guessthecity[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guessthecity[m.chat][1]))
                 jawaban = json.title.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebakkota',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guessthecity',
                         buttonText: {
-                            displayText: "Tebak Kota"
+                            displayText: "ɢᴜᴇss ᴄɪᴛʏ"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Kota", tebakkota[m.chat][2]), footer_text, m)
-                    clearTimeout(tebakkota[m.chat][3])
-                    delete tebakkota[m.chat]
+                    }], correctanswer("ɢᴜᴇss ᴄɪᴛʏ", guessthecity[m.chat][2]), footer_text, m)
+                    clearTimeout(guessthecity[m.chat][3])
+                    delete guessthecity[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.tekako', 'Hint', '.ytekako', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.guessko', 'Hint', '.guessko', 'Nyerah', m)
             }
         }
-        if (tebakkimia[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebakkimia[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebakkimia[m.chat][1]))
+        if (guesschemistry[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guesschemistry[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guesschemistry[m.chat][1]))
                 jawaban = json.unsur.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebakkimia',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guesschemistry',
                         buttonText: {
-                            displayText: "Tebak Kimia"
+                            displayText: "ɢᴜᴇss ᴄʜᴇᴍɪsᴛʀʏ"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Kimia", tebakkimia[m.chat][2]), footer_text, m)
-                    clearTimeout(tebakkimia[m.chat][3])
-                    delete tebakkimia[m.chat]
+                    }], correctanswer("ɢᴜᴇss ᴄʜᴇᴍɪsᴛʀʏ", guesschemistry[m.chat][2]), footer_text, m)
+                    clearTimeout(guesschemistry[m.chat][3])
+                    delete guesschemistry[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.teki', 'Hint', '.yteki', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.teki', 'Hint', '.yteki', 'Nyerah', m)
             }
         }
-        if (tebaklirik[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebaklirik[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebaklirik[m.chat][1]))
+        if (guessthelyrics[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == guessthelyrics[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(guessthelyrics[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebaklirik',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.guessthelyrics',
                         buttonText: {
-                            displayText: "Tebak Lirik"
+                            displayText: "ɢᴜᴇss ᴛʜᴇ ʟʏʀɪᴄs"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Lirik", tebaklirik[m.chat][2]), footer_text, m)
-                    clearTimeout(tebaklirik[m.chat][3])
-                    delete tebaklirik[m.chat]
+                    }], correctanswer("ɢᴜᴇss ᴛʜᴇ ʟʏʀɪᴄs", guessthelyrics[m.chat][2]), footer_text, m)
+                    clearTimeout(guessthelyrics[m.chat][3])
+                    delete guessthelyrics[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.teli', 'Hint', '.yteli', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.teli', 'Hint', '.yteli', 'Nyerah', m)
             }
         }
-        if (tebaktebakan[m.chat] && !isCmd && m.quoted) {
-            if (m.quoted.id == tebaktebakan[m.chat][0].key.id) {
-                let json = JSON.parse(JSON.stringify(tebaktebakan[m.chat][1]))
+        if (riddles[m.chat] && !isCmd && m.quoted) {
+            if (m.quoted.id == riddles[m.chat][0].key.id) {
+                let json = JSON.parse(JSON.stringify(riddles[m.chat][1]))
                 jawaban = json.jawaban.toLowerCase().trim()
                 if (m.text.toLowerCase() == jawaban) {
-                    await alpha.sendButtonText(m.chat, [{
-                        buttonId: '.tebaktebakan',
+                    await thoppi.sendButtonText(m.chat, [{
+                        buttonId: '.riddles',
                         buttonText: {
-                            displayText: "Tebak Tebakan"
+                            displayText: "ʀɪᴅᴅʟᴇs"
                         },
                         type: 1
-                    }], jawabanBenar("Tebak Tebakan", tebaktebakan[m.chat][2]), footer_text, m)
-                    clearTimeout(tebaktebakan[m.chat][3])
-                    delete tebaktebakan[m.chat]
+                    }], correctanswer("ʀɪᴅᴅʟᴇs", riddles[m.chat][2]), footer_text, m)
+                    clearTimeout(riddles[m.chat][3])
+                    delete riddles[m.chat]
                 }
                 else if (similarity(m.text.toLowerCase(), jawaban) >= threshold)
-                    reply(`_Ya, Dikit Lagi!_`)
-                else alpha.send2ButMes(m.chat, "❌ Jawaban salah", footer_text, '.teteb', 'Hint', '.yteteb', 'Nyerah', m)
+                    reply(`_ʏᴇs, ᴀ ʟɪᴛᴛʟᴇ ᴍᴏʀᴇ_`)
+                else thoppi.send2ButMes(m.chat, "❌ ᴡʀᴏɴɢ ᴀɴsᴡᴇʀ", footer_text, '.teteb', 'Hint', '.yteteb', 'Nyerah', m)
             }
         }
         if(isCmd && !isCreator && grup_only){
-          reply("Bot hanya bisa digunakan dalam grup")
+          reply("ʙᴏᴛs ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ɢʀᴏᴜᴘs")
           return
         }
 
@@ -525,13 +530,25 @@ ${isSurender ? '' : ``}`.trim()
         switch (command) {
             case 'owner':
             case 'creator': {
-                alpha.sendContact(m.chat, global.owner, m)
+                thoppi.sendContact(m.chat, global.owner, m)
             }
             break
             case 'sc':
+            case 'github':
             case 'script':
-            case 'scrip':{
-              reply("https://github.com/zeeoneofficial/example-case")
+            case 'git':{
+                if (!text) return reply(`
+╭───═[ GITHUB ]═───⋆
+│╭───────────────···
+┴│*ᴇɴᴅʜᴀᴀᴅᴀ ʟᴏᴛᴛᴇ😀*
+   │
+   │
+⬡│☂︎ *ɢɪᴛʜᴜʙ* : http://surl.li/ibimq
+⬡│☂︎ *ᴍʏ ᴘʀᴏғɪʟᴇ* : http://surl.li/ibioo
+⬡│☂︎ *ɪɴsᴛᴀ* : instagram.com/huxniee
+┬╰────────────────···
+│  © ʜᴜsɴɪ
+╰─────═[ LOTTE🗿 ]═─────⋆`)
             }
               break
             case 'menu':
@@ -542,16 +559,27 @@ ${isSurender ? '' : ``}`.trim()
                     usedGb,
                     freeGb
                 } = await nou.drive.info()
-                var {
+              let fload = {     key : {
+    remoteJid: 'status@broadcast',
+    participant : '0@s.whatsapp.net'
+    },
+    message: {
+    orderMessage: {
+    itemCount : 2022,
+    status: 1,
+    surface : 1,
+    message: ' 「 ͲᎻϴᏢᏢᏆ-ᎷᎠ」'+ '\nʟᴏᴛᴛᴇᴇ...', 
+    orderTitle: `「 ͲᎻϴᏢᏢᏆ-ᎷᎠ」`,
+    thumbnail: fs.readFileSync("./thoppi2.jpg"),
+    sellerJid: '0@s.whatsapp.net' 
+    }
+    }
+                             }
+          var {
                     download,
                     upload
                 } = await checkBandwidth();
-                alpha.sendMessage(m.chat, {
-                    image: pp_bot,
-                    caption: help.menu(pushname, salam, mundur, upload, download, totalGb, usedGb, freeGb, namaowner, namabot, jam, tanggal, runtime(process.uptime()), prefix)
-                }, {
-                    quoted: m
-                })
+              alpha.sendButImage(m.chat, { image: pp_bot, caption: help.menu(pushname,botname, salam, mundur, upload, download, totalGb, usedGb, freeGb, namaowner, namabot, jam, tanggal, runtime(process.uptime()), prefix),mentions: [...help.menu(/@([0-9]{5,16}|0)/g)].map(v => v[1] + '@s.whatsapp.net')}, { quoted: fload }) 
             }
             break
             //anime
@@ -603,17 +631,17 @@ ${isSurender ? '' : ``}`.trim()
                 let res = await fetch(global.api('alfa', '/api/anime/' + command, {}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'anime.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'anime.jpg', mess.done, m)
             }
             break
-            //Asupan
+            //ɪɴᴛᴀᴋᴇ
             case 'chika':
             case 'rikagusriani':
             case 'bocil':
             case 'geayubi':
             case 'santuy':
             case 'ukhty':
-            case 'asupan':
+            case 'ɪɴᴛᴀᴋᴇ':
             case 'delvira':
             case 'ayu':
             case 'bunga':
@@ -629,10 +657,10 @@ ${isSurender ? '' : ``}`.trim()
             case 'alcakenya':
             case 'mangayutri': {
                 reply(mess.wait)
-                let res = await fetch(global.api('alfa', '/api/asupan/' + command, {}, 'apikey'))
+                let res = await fetch(global.api('alfa', '/api/ɪɴᴛᴀᴋᴇ/' + command, {}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'asupan.mp4', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'ɪɴᴛᴀᴋᴇ.mp4', mess.done, m)
             }
             break
             //cecan
@@ -651,7 +679,7 @@ ${isSurender ? '' : ``}`.trim()
                 let res = await fetch(global.api('alfa', '/api/cecan/' + command, {}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'cecan.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'cecan.jpg', mess.done, m)
             }
             break
             //cogan
@@ -677,7 +705,7 @@ ${isSurender ? '' : ``}`.trim()
                 let res = await fetch(global.api('alfa', '/api/cogan/' + command, {}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'cogan.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'cogan.jpg', mess.done, m)
             }
             break
             //download
@@ -688,9 +716,9 @@ ${isSurender ? '' : ``}`.trim()
             case 'ytmp4':
             case 'ytshorts':
             case 'ytshort': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} link youtube\n\nContoh penggunaan:\n${prefix+command} https://youtu.be/kwop2Eg5QY4`)
-                if (!isUrl(args[0])) return reply(`Kirim perintah:\n${prefix+command} link youtube\n\nContoh penggunaan:\n${prefix+command} https://youtu.be/kwop2Eg5QY4`)
-                if (!args[0].includes('youtu.be') && !args[0].includes('youtube.com')) return reply(`Kirim perintah:\n${prefix+command} link youtube\n\nContoh penggunaan:\n${prefix+command} https://youtu.be/kwop2Eg5QY4`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} ʟɪɴᴋ ʏᴛ ᴠɪᴅᴇᴏ\n\nᴇɢ:-\n${prefix+command} https://youtu.be/vT0OHeV9xiI`)
+                if (!isUrl(args[0])) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link youtube\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://youtu.be/vT0OHeV9xiI`)
+                if (!args[0].includes('youtu.be') && !args[0].includes('youtube.com')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link youtube\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://youtu.be/vT0OHeV9xiI`)
                 let res = await fetch(global.api('alfa', '/api/downloader/youtube-video', {
                     url: args[0]
                 }, 'apikey'))
@@ -712,9 +740,9 @@ ${isSurender ? '' : ``}`.trim()
                     },
                     type: 1
                 }, {
-                    buttonId: '.donasi',
+                    buttonId: '.Donate',
                     buttonText: {
-                        displayText: 'Donasi 🎁'
+                        displayText: 'Donate 🎁'
                     },
                     type: 1
                 }]
@@ -726,7 +754,7 @@ ${isSurender ? '' : ``}`.trim()
                     key += `• Size: ${filesize}\n`
                     key += `• Download: ${download}\n\n`
                     key += `Ukuran media melebihi batas, silahkan download sendiri melalui link di atas.`
-                    await alpha.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
+                    await thoppi.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
                         quoted: m
                     })
                 }
@@ -738,10 +766,10 @@ ${isSurender ? '' : ``}`.trim()
                     key += `• Size: ${filesize}\n`
                     key += `• Download: ${download}\n\n`
                     key += `Silahkan tunggu beberapa hari lagi, media akan di kirim sama bot. Jika tidak di kirim lu download sendiri pake link di atas.`
-                    await alpha.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
+                    await thoppi.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
                         quoted: m
                     })
-                    alpha.sendMessage(from, {
+                    thoppi.sendMessage(from, {
                         video: {
                             url: download
                         },
@@ -758,9 +786,9 @@ ${isSurender ? '' : ``}`.trim()
             case 'ytshortmp3':
             case 'mp3':
             case 'ytmp3': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} link youtube\n\nContoh penggunaan:\n${prefix+command} https://youtu.be/kwop2Eg5QY4`)
-                if (!isUrl(args[0])) return reply(`Kirim perintah:\n${prefix+command} link youtube\n\nContoh penggunaan:\n${prefix+command} https://youtu.be/kwop2Eg5QY4`)
-                if (!args[0].includes('youtu.be') && !args[0].includes('youtube.com')) return reply(`Kirim perintah:\n${prefix+command} link youtube\n\nContoh penggunaan:\n${prefix+command} https://youtu.be/kwop2Eg5QY4`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link youtube\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://youtu.be/vT0OHeV9xiI`)
+                if (!isUrl(args[0])) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link youtube\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://youtu.be/vT0OHeV9xiI`)
+                if (!args[0].includes('youtu.be') && !args[0].includes('youtube.com')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link youtube\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://youtu.be/vT0OHeV9xiI`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/youtube-audio', {
                     url: args[0]
@@ -783,9 +811,9 @@ ${isSurender ? '' : ``}`.trim()
                     },
                     type: 1
                 }, {
-                    buttonId: '.donasi',
+                    buttonId: '.Donate',
                     buttonText: {
-                        displayText: 'Donasi 🎁'
+                        displayText: 'Donate 🎁'
                     },
                     type: 1
                 }]
@@ -797,7 +825,7 @@ ${isSurender ? '' : ``}`.trim()
                     key += `• Size: ${filesize}\n`
                     key += `• Download: ${download}\n\n`
                     key += `Ukuran media melebihi batas, silahkan download sendiri melalui link di atas.`
-                    await alpha.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
+                    await thoppi.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
                         quoted: m
                     })
                 }
@@ -809,10 +837,10 @@ ${isSurender ? '' : ``}`.trim()
                     key += `• Size: ${filesize}\n`
                     key += `• Download: ${download}\n\n`
                     key += `Silahkan tunggu beberapa hari lagi, media akan di kirim sama bot. Jika tidak di kirim lu download sendiri pake link di atas.`
-                    await alpha.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
+                    await thoppi.sendButImage(m.chat, thumbnail, but, key, footer_text, [], {
                         quoted: m
                     })
-                    alpha.sendMessage(from, {
+                    thoppi.sendMessage(from, {
                         audio: {
                             url: download
                         },
@@ -825,8 +853,8 @@ ${isSurender ? '' : ``}`.trim()
             }
             break
             case 'play': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} judul lagu\n\nContoh penggunaan:\n${prefix+command} bot WhatsApp Zeeoneofc`)
-                //if (isUrl(text)) return reply(`Kirim perintah:\n${prefix+command} judul lagu\n\nContoh penggunaan:\n${prefix+command} bot WhatsApp Zeeoneofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} judul lagu\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} bot WhatsApp ʜᴜsɴɪ`)
+                //if (isUrl(text)) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} judul lagu\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} bot WhatsApp ʜᴜsɴɪ`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/youtube-search', {
                     query: text
@@ -867,15 +895,15 @@ ${isSurender ? '' : ``}`.trim()
 📆 Upload : ${ago}
 🔗 URL Video : ${url}
 📝 Description : ${description}`
-                await alpha.sendButImage(m.chat, image, but, thumbInfo, footer_text, [], {
+                await thoppi.sendButImage(m.chat, image, but, thumbInfo, footer_text, [], {
                     quoted: m
                 })
             }
             break
             case 'yts':
             case 'ytsearch': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} judul lagu/video\n\nContoh penggunaan:\n${prefix+command} bot WhatsApp Zeeoneofc`)
-                //if (isUrl(text)) return reply(`Kirim perintah:\n${prefix+command} judul lagu/video\n\nContoh penggunaan:\n${prefix+command} bot WhatsApp Zeeoneofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} judul lagu/video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} bot WhatsApp ʜᴜsɴɪ`)
+                //if (isUrl(text)) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} judul lagu/video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} bot WhatsApp ʜᴜsɴɪ`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/youtube-search', {
                     query: text
@@ -915,9 +943,9 @@ ${isSurender ? '' : ``}`.trim()
                     buttonText: "SELECT HERE",
                     sections
                 }
-                return await alpha.sendMessage(m.chat, listMessage, {
+                return await thoppi.sendMessage(m.chat, listMessage, {
                     quoted: m,
-                    upload: alpha.waUploadToServer
+                    upload: thoppi.waUploadToServer
                 }).catch(async _ => await reply("Server sedang eror"))
             }
             break
@@ -927,8 +955,8 @@ ${isSurender ? '' : ``}`.trim()
             case 'igfoto':
             case "ig":
             case "igdl": {
-                if (!args[0]) return reply(`Kirim perintah:\n${prefix+command} link Instagram\n\nContoh penggunaan:\n${prefix+command} https://www.instagram.com/p/ClU74LNpgaw/?igshid=YmMyMTA2M2Y=`)
-                if (!isUrl(args[0])) return reply(`Kirim perintah:\n${prefix+command} link Instagram\n\nContoh penggunaan:\n${prefix+command} https://www.instagram.com/p/ClU74LNpgaw/?igshid=YmMyMTA2M2Y=`)
+                if (!args[0]) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link Instagram\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.instagram.com/p/ClU74LNpgaw/?igshid=YmMyMTA2M2Y=`)
+                if (!isUrl(args[0])) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link Instagram\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.instagram.com/p/ClU74LNpgaw/?igshid=YmMyMTA2M2Y=`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/instagram-photo', {
                     url: args[0]
@@ -937,7 +965,7 @@ ${isSurender ? '' : ``}`.trim()
                 var result = await res.json()
                 var result = result.result
                 for (let i of result.url) {
-                    alpha.sendFile(m.chat, i, 'ig.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, i, 'ig.jpg', mess.done, m)
                 }
             }
             break
@@ -947,8 +975,8 @@ ${isSurender ? '' : ``}`.trim()
             case 'igreels':
             case 'instareels':
             case 'instareel': {
-                if (!args[0]) return reply(`Kirim perintah:\n${prefix+command} link Instagram video/reels\n\nContoh penggunaan:\n${prefix+command} https://www.instagram.com/reel/CnVwm3KrQRl/?igshid=YmMyMTA2M2Y=`)
-                if (!isUrl(args[0])) return reply(`Kirim perintah:\n${prefix+command} link Instagram video/reels\n\nContoh penggunaan:\n${prefix+command} https://www.instagram.com/reel/CnVwm3KrQRl/?igshid=YmMyMTA2M2Y=`)
+                if (!args[0]) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link Instagram video/reels\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.instagram.com/reel/CnVwm3KrQRl/?igshid=YmMyMTA2M2Y=`)
+                if (!isUrl(args[0])) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link Instagram video/reels\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.instagram.com/reel/CnVwm3KrQRl/?igshid=YmMyMTA2M2Y=`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/instagram-video', {
                     url: args[0]
@@ -957,26 +985,27 @@ ${isSurender ? '' : ``}`.trim()
                 var result = await res.json()
                 var result = result.result
                 for (let i of result.url) {
-                    alpha.sendFile(m.chat, i, 'ig.mp4', mess.done, m)
+                    thoppi.sendFile(m.chat, i, 'ig.mp4', mess.done, m)
                 }
             }
             break
-            case "pinterest": {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} query\n\nContoh penggunaan:\n${prefix+command} sakura`)
-                //if (isUrl(text)) return reply(`Kirim perintah:\n${prefix+command} query\n\nContoh penggunaan:\n${prefix+command} sakura`)
+            case "pinterest":
+            case "pt": {
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} query\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} sakura`)
+                //if (isUrl(text)) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} query\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} sakura`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/pinterest2', {
                     query: text
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 var result = await res.buffer()
-                alpha.sendFile(m.chat, result, 'pinterest.jpg', "Gambar tidak sesuai? Apakah saya peduli?", m)
+                thoppi.sendFile(m.chat, result, 'pinterest.jpg', "Gambar tidak sesuai? Apakah saya peduli?", m)
             }
             break
             case "mf":
             case "mediafire": {
-                if (!args[0]) return reply(`Kirim perintah:\n${prefix+command} link mediafire\n\nContoh penggunaan:\n${prefix+command} https://www.mediafire.com/file/eb14v8x4oz7ok3h/Alphabot-Mdv17.5-withModule.zip/file`)
-                if (!isUrl(args[0]) && !args[0].includes("mediafire.com")) return reply(`Kirim perintah:\n${prefix+command} link MediaFire\n\nContoh penggunaan:\n${prefix+command} https://www.mediafire.com/file/eb14v8x4oz7ok3h/Alphabot-Mdv17.5-withModule.zip/file`)
+                if (!args[0]) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link mediafire\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.mediafire.com/file/eb14v8x4oz7ok3h/thoppibot-Mdv17.5-withModule.zip/file`)
+                if (!isUrl(args[0]) && !args[0].includes("mediafire.com")) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link MediaFire\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.mediafire.com/file/eb14v8x4oz7ok3h/thoppibot-Mdv17.5-withModule.zip/file`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/mediafire', {
                     url: args[0]
@@ -990,12 +1019,12 @@ ${isSurender ? '' : ``}`.trim()
                 } = result.result
                 if (size.replace('MB', '') >= 100 || size.replace('GB', '') >= 1) { //size edit sendiri jika mau download yang lebih media yang lebih besar
                     var key = `*「 Mediafire Download 」*\n\n`
-                    key += `Nama: ${nama}\n`
+                    key += `Name: ${nama}\n`
                     key += `Tipe: ${result.mime}\n`
                     key += `Size: ${size}\n`
                     key += `Link: ${link}\n\n`
                     key += `Untuk size lebih dari batas, silahkan download melalui link diatas.`
-                    alpha.sendMessage(from, {
+                    thoppi.sendMessage(from, {
                         text: key
                     }, {
                         quoted: m
@@ -1003,24 +1032,24 @@ ${isSurender ? '' : ``}`.trim()
                 }
                 else {
                     var key = `*「 Mediafire Download 」*\n\n`
-                    key += `Nama: ${nama}\n`
+                    key += `Name: ${nama}\n`
                     key += `Tipe: ${result.mime}\n`
                     key += `Size: ${size}\n`
                     key += `Link: ${link}\n\n`
                     key += `Media dalam proses pengiriman, membutuhkan waktu sekitar 5,9 jam silahkan di tunggu.`
-                    await alpha.sendMessage(from, {
+                    await thoppi.sendMessage(from, {
                         text: key
                     }, {
                         quoted: m
                     })
-                    alpha.sendFile(m.chat, link, 'mediafire.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, link, 'mediafire.jpg', mess.done, m)
                 }
             }
             break
             case "tiktoknowm":
             case "tiktok": {
-                if (!args[0]) return reply(`Kirim perintah:\n${prefix+command} link tiktok video\n\nContoh penggunaan:\n${prefix+command} https://www.tiktok.com/@zeeone.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
-                if (!isUrl(args[0]) && !args[0].includes("tiktok.com")) return reply(`Kirim perintah:\n${prefix+command} link tiktok video\n\nContoh penggunaan:\n${prefix+command} https://www.tiktok.com/@zeeone.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
+                if (!args[0]) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link tiktok video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.tiktok.com/@ʜᴜsɴɪ.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
+                if (!isUrl(args[0]) && !args[0].includes("tiktok.com")) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link tiktok video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.tiktok.com/@ʜᴜsɴɪ.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/tiktok', {
                     url: args[0]
@@ -1028,7 +1057,7 @@ ${isSurender ? '' : ``}`.trim()
                 if (!res.ok) throw await res.text()
                 var result = await res.json()
                 var result = result.result
-                alpha.sendMessage(from, {
+                thoppi.sendMessage(from, {
                     video: {
                         url: result.nowm
                     },
@@ -1040,8 +1069,8 @@ ${isSurender ? '' : ``}`.trim()
             }
             break
             case "tiktokaudio": {
-                if (!args[0]) return reply(`Kirim perintah:\n${prefix+command} link tiktok video\n\nContoh penggunaan:\n${prefix+command} https://www.tiktok.com/@zeeone.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
-                if (!isUrl(args[0]) && !args[0].includes("tiktok.com")) return reply(`Kirim perintah:\n${prefix+command} link tiktok video\n\nContoh penggunaan:\n${prefix+command} https://www.tiktok.com/@zeeone.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
+                if (!args[0]) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link tiktok video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.tiktok.com/@ʜᴜsɴɪ.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
+                if (!isUrl(args[0]) && !args[0].includes("tiktok.com")) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link tiktok video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.tiktok.com/@ʜᴜsɴɪ.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/tiktok', {
                     url: args[0]
@@ -1049,7 +1078,7 @@ ${isSurender ? '' : ``}`.trim()
                 if (!res.ok) throw await res.text()
                 var result = await res.json()
                 var result = result.result
-                alpha.sendMessage(from, {
+                thoppi.sendMessage(from, {
                     audio: {
                         url: result.audio
                     },
@@ -1061,8 +1090,8 @@ ${isSurender ? '' : ``}`.trim()
             }
             break
             case "tiktokvn": {
-                if (!args[0]) return reply(`Kirim perintah:\n${prefix+command} link tiktok video\n\nContoh penggunaan:\n${prefix+command} https://www.tiktok.com/@zeeone.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
-                if (!isUrl(args[0]) && !args[0].includes("tiktok.com")) return reply(`Kirim perintah:\n${prefix+command} link tiktok video\n\nContoh penggunaan:\n${prefix+command} https://www.tiktok.com/@zeeone.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
+                if (!args[0]) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link tiktok video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.tiktok.com/@ʜᴜsɴɪ.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
+                if (!isUrl(args[0]) && !args[0].includes("tiktok.com")) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} link tiktok video\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} https://www.tiktok.com/@ʜᴜsɴɪ.official/video/7210229439744003355?_r=1&u_code=e44201c8bfkd30®ion=ID&mid=7202111782981913370&preview_pb=0&language=id&_d=e0cah74j08m7c7&share_item_id=7210229439744003355&source=h5_t×tamp=1679216331&user_id=7148061777321133083&sec_user_id=MS4wLjABAAAA50SieLfP2YD-R-gqSE3svcPxaPqr_53pA6RKyJUkQo_AreOGrLDiVRnajBVglVIk&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7160625938232592154&share_link_id=6b2fea89-b038-4919-8d58-38b4efba5b9c&share_app_id=1180&ugbiz_name=Main&ug_btm=b8727%2Cb2878`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/downloader/tiktok', {
                     url: args[0]
@@ -1070,7 +1099,7 @@ ${isSurender ? '' : ``}`.trim()
                 if (!res.ok) throw await res.text()
                 var result = await res.json()
                 var result = result.result
-                alpha.sendMessage(from, {
+                thoppi.sendMessage(from, {
                     audio: {
                         url: result.audio
                     },
@@ -1082,7 +1111,7 @@ ${isSurender ? '' : ``}`.trim()
                 })
             }
             break
-            //semoji
+            //social
             case "apple":
             case "aubykddi":
             case "docomo":
@@ -1106,7 +1135,7 @@ ${isSurender ? '' : ``}`.trim()
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                let savestik = await alpha.sendImageAsSticker(m.chat, img, m, {
+                let savestik = await thoppi.sendImageAsSticker(m.chat, img, m, {
                     packname: packname,
                     author: author
                 })
@@ -1185,20 +1214,20 @@ ${isSurender ? '' : ``}`.trim()
             case "watercolor2":
             case "womansday":
             case "writeblood":
-            case "writegalaxy":
+            case "wriguesslaxy":
             case "writehorror":
             case "youtubegold":
             case "youtubesilver":
             case "zombie3d": {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan:\n${prefix+command} zeeoneofc`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan:\n${prefix+command} zeeoneofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/ephoto360/' + command, {
                     text: text
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'ephoto.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'ephoto.jpg', mess.done, m)
             }
             break
             case "shirtclub":
@@ -1209,8 +1238,8 @@ ${isSurender ? '' : ``}`.trim()
             case 'stylepoligon':
             case 'lifebuoys':
             case 'juventusshirt': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
                 mm = args.join(' ')
                 m1 = mm.split("|")[0];
                 m2 = mm.split("|")[1];
@@ -1221,14 +1250,14 @@ ${isSurender ? '' : ``}`.trim()
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'ephoto.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'ephoto.jpg', mess.done, m)
             }
             break
 
             //logo maker
             case 'coverbannerlol': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|pyke-7`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|pyke-7`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|pyke-7`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|pyke-7`)
                 var arg = args.join(' ')
                 atas = arg.split('|')[0]
                 bawah = arg.split('|')[1]
@@ -1244,14 +1273,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'pubglogomaker': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|women`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|women`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|women`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|women`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1267,14 +1296,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'colorfulpubg': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|color\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|green-yellow`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|color\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|green-yellow`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|color\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|green-yellow`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|color\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|green-yellow`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1290,14 +1319,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'astronotspace': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|panther`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|panther`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|panther`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|panther`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1313,14 +1342,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'wallpaperaov': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|preyta-2`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|preyta-2`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|preyta-2`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|preyta-2`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1336,14 +1365,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'maketeamlogo': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|panda`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|panda`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|panda`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|panda`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1359,14 +1388,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'circlemarcotteam': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|bear`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|bear`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bear`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bear`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1382,18 +1411,18 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'wallpaperml': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|chou`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|chou`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|chou`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|chou`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
-                const style = ['aldous', 'alice-2', 'angela-2', 'argus-2', 'chou', 'chou-2', 'estes', 'eudora', 'eudora-2', 'granger', 'granger-2', 'gusion-3', 'hanabi-2', 'hanzo', 'helcurt', 'layla-3', 'lesley-4', 'lunox-2', 'odette-3', 'saber', 'thamuz', 'vexana', 'argus', 'dyrroth', 'esmeralda-2', 'kadita-2', 'lancelot', 'leomord-2', 'lylia', 'vale', 'valir', 'xborg', 'zhask', 'alice', 'alpha', 'athena', 'badang', 'balmond', 'bane', 'diggie', 'trunks', 'fanny-2', 'fanny-3', 'freya', 'guinevere', 'gusion', 'gusion-2', 'hanabi', 'harith', 'harith-2', 'hayabusa-2', 'kadita', 'kagura-2', 'kagura-3', 'karina-2', 'kimmy', 'layla-2', 'leomord', 'lesley-2', 'lesley-3', 'lunox', 'nartis', 'niya-2', 'nana', 'nana-2', 'natalia', 'natalia-2', 'odette-2', 'pharsa', 'rafaela-2', 'selena-2', 'zilong', 'alucard', 'angela', 'bruno', 'change', 'claude', 'fanny', 'hayabusa', 'hilda', 'hylos', 'kagura', 'karina', 'karrie', 'layla', 'lesley', 'lolita', 'ninotaur', 'ninsittar', 'niya', 'noskov', 'odette', 'rafaela', 'selena']
+                const style = ['aldous', 'alice-2', 'angela-2', 'argus-2', 'chou', 'chou-2', 'estes', 'eudora', 'eudora-2', 'granger', 'granger-2', 'gusion-3', 'hanabi-2', 'hanzo', 'helcurt', 'layla-3', 'lesley-4', 'lunox-2', 'odette-3', 'saber', 'thamuz', 'vexana', 'argus', 'dyrroth', 'esmeralda-2', 'kadita-2', 'lancelot', 'leomord-2', 'lylia', 'vale', 'valir', 'xborg', 'zhask', 'alice', 'thoppi', 'athena', 'badang', 'balmond', 'bane', 'diggie', 'trunks', 'fanny-2', 'fanny-3', 'freya', 'guinevere', 'gusion', 'gusion-2', 'hanabi', 'harith', 'harith-2', 'hayabusa-2', 'kadita', 'kagura-2', 'kagura-3', 'karina-2', 'kimmy', 'layla-2', 'leomord', 'lesley-2', 'lesley-3', 'lunox', 'nartis', 'niya-2', 'nana', 'nana-2', 'natalia', 'natalia-2', 'odette-2', 'pharsa', 'rafaela-2', 'selena-2', 'zilong', 'alucard', 'angela', 'bruno', 'change', 'claude', 'fanny', 'hayabusa', 'hilda', 'hylos', 'kagura', 'karina', 'karrie', 'layla', 'lesley', 'lolita', 'ninotaur', 'ninsittar', 'niya', 'noskov', 'odette', 'rafaela', 'selena']
                 if (!style.includes(m2)) {
                     getStyle(style.length, "heroes")
                 }
@@ -1405,14 +1434,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'dragonballfb': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|kale`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|kale`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|kale`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|kale`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1428,14 +1457,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'bannerofaov': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|swain`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|swain`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|swain`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|swain`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1451,14 +1480,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'effect3donbeach': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|background\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|beach-5`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|background\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|beach-5`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|beach-5`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|beach-5`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1474,14 +1503,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'cutegirlgamer': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|style-3`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|style-3`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|style-3`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|style-3`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1497,14 +1526,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'footballteam': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nau-5`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nau-5`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nau-5`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nau-5`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1520,14 +1549,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'beautifulshimmering': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|champion\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nina`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|champion\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nina`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|champion\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nina`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|champion\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nina`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1543,14 +1572,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'pubgcutelogo': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|chicken`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|chicken`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|chicken`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|chicken`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1566,14 +1595,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'elegantrotation': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|dragon`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|dragon`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|dragon`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|dragon`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1589,14 +1618,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'logogamingassasin': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|style-1`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|style-1`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|style-1`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|style-1`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1612,14 +1641,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'introvideomaker': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|dragon`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|dragon`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|dragon`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|dragon`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1635,14 +1664,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'gaminglogo4fvs': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|soldier`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|soldier`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|soldier`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|soldier`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1658,14 +1687,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'blueneon': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|lion`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|lion`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lion`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lion`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1681,14 +1710,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'metalmascot': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|lion`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|logo\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|lion`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lion`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|logo\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lion`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1704,14 +1733,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'anonymous2': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|style1`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|style1`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|style1`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|style1`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1727,14 +1756,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'lolpentakill': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nocturne`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nocturne`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nocturne`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nocturne`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1750,14 +1779,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'avatarleagueofking': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|ilumia-5`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|ilumia-5`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ilumia-5`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ilumia-5`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1773,14 +1802,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'avatarff': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|alok`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|alok`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|alok`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|alok`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1796,14 +1825,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'overwatchwallpaper': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|lucio`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|lucio`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lucio`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lucio`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1819,14 +1848,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'rovwallpaperhd': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|hero\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|keera`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|hero\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|keera`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|hero\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|keera`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|hero\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|keera`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1842,14 +1871,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'rovwallpaper': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|grakk-6`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|grakk-6`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|grakk-6`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|grakk-6`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1865,14 +1894,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'beautifulgalaxylol': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|khazix-2`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|khazix-2`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|khazix-2`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|khazix-2`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1888,14 +1917,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'crossfirecover': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|natahari`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|natahari`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|natahari`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|natahari`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1911,14 +1940,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'lolwallpaper': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|wallpaper\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|fizz`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|wallpaper\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|fizz`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|wallpaper\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|fizz`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|wallpaper\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|fizz`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1934,14 +1963,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'coverdota2': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|luna`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|heroes\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|luna`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|luna`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|heroes\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|luna`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1957,14 +1986,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'coverleagueofking': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nina`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nina`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nina`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nina`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -1980,14 +2009,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'avatar3q360': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|truong_phi`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|truong_phi`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|truong_phi`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|truong_phi`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2003,14 +2032,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'coverofwarface': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|warface`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|warface`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|warface`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|warface`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2026,14 +2055,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'newlolavatar': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|shyvana`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|shyvana`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|shyvana`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|shyvana`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2049,14 +2078,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'csgocover': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|background\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|negev`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|background\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|negev`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|negev`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|negev`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2072,14 +2101,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'coverloknew': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|hero\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|ilumia-5`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|hero\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|ilumia-5`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|hero\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ilumia-5`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|hero\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ilumia-5`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2095,14 +2124,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'coverfblol': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|letters\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nami`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|letters\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|nami`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|letters\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nami`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|letters\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|nami`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2118,14 +2147,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'overwatchcover': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|hero\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|zsymmetra`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|hero\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|zsymmetra`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|hero\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|zsymmetra`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|hero\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|zsymmetra`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2141,14 +2170,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'crossfirestyle': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|thefates`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|thefates`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|thefates`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|thefates`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2164,14 +2193,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'avatarlolbyname': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|zyra-4`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|zyra-4`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|zyra-4`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|zyra-4`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2187,14 +2216,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'lolcoverbyname': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|xinzhao`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|avatar\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|xinzhao`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|xinzhao`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|avatar\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|xinzhao`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2210,14 +2239,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'cyberhunterfb': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|1`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|1`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|1`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|1`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2233,14 +2262,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'coverfreefirefb': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|laura`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|laura`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|laura`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|laura`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2256,14 +2285,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'gamingmascot': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|bear`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|style\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|bear`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bear`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|style\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bear`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2279,14 +2308,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'coveronepiecefb': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|ace`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|character\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|ace`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ace`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|character\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ace`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2302,14 +2331,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'bannerytcsgo': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|template\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|banner-7`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|template\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|banner-7`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|template\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|banner-7`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|template\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|banner-7`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2325,14 +2354,14 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'fbgamepubgcover': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks|template\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|cover-4`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks|template\n\nContoh penggunaan:\n${prefix+command} zeeoneofc|cover-4`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|template\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|cover-4`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks|template\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|cover-4`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -2348,19 +2377,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'banneroflol': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|banner\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|neeko`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|banner\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|neeko`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|banner\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|neeko`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|banner\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|neeko`)
                 var memek = args.join(" ").split("|")
                 var m1 = memek[0]
                 var m2 = memek[1]
                 var m3 = memek[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|banner\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|neeko`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|banner\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|neeko`)
                 const style = ['ahri-2', 'neeko', 'nocturne', 'shen-2', 'veigar', 'rakanayah-2', 'zoe-2', 'pantheon-2', 'rammus', 'udyr', 'darius-2', 'ekko-2', 'lablanc', 'leona', 'nissfotune', 'poppy', 'quinn', 'talon-2', 'akali-2', 'irelia-2', 'jinx-2', 'nordekaiser', 'pyke-2', 'renekton', 'rengar', 'sivir', 'sona', 'soraka', 'tristana', 'warwick', 'yuumi', 'ziggs', 'leesin', 'lulu', 'lux', 'naster-yi', 'norgana', 'nasus', 'pantheon', 'pyke', 'qiyana', 'rakan', 'rakanxayah', 'riven', 'shen', 'sylas', 'talon', 'teemo', 'thresh', 'tryndamere', 'varus', 'vayne', 'velkoz', 'vladimir', 'yasuo', 'zed', 'zoe', 'hecarim', 'heimerdinger', 'illaoi', 'irelia', 'ivern', 'janna', 'jarvan-iv', 'jax', 'jayce', 'jhin', 'jinx', 'kaisa', 'kalista', 'karma', 'karthus', 'kassadin', 'katarina', 'kayle', 'kayn', 'kennen', 'khazix', 'kindred', 'kled', 'kogmaw', 'aatrox', 'ahri', 'akali', 'alistar', 'amumu', 'anivia', 'annie', 'ashe', 'aurelionsol', 'azir', 'bard', 'blitzcrank', 'brand', 'braum', 'caitlyn', 'camille', 'cassiopeia', 'chogath', 'corki', 'darius', 'diana', 'drmundo', 'draven', 'ekko', 'elise', 'evelynn', 'ezreal', 'fiddlesticks', 'fiora', 'fizz', 'galio', 'gangplank', 'garen', 'gnar', 'gragas', 'graves']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "banner")
@@ -2374,19 +2403,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'bannerofaov2': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|banner\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|ishar`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|banner\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|ishar`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|banner\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ishar`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|banner\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ishar`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|banner\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|ishar`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|banner\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|ishar`)
                 const style = ['airi-2', 'aleister', 'astrid-2', 'ata', 'butterfly-2', 'dirak', 'ignis-2', 'ishar', 'jinna', 'lauriel-3', 'nina-2', 'natalya-2', 'omen-2', 'qi-2', 'quillen3', 'raz', 'roxie-2', 'ryoma-2', 'taara-2', 'violet-3', 'wukong-4', 'wukong-3', 'krixi-2', 'krizziz', 'nurad-5', 'volkath', 'wisp-2', 'wukong-2', 'enzo-2', 'hayate-2', 'annette-2', 'capheny-2', 'celica', 'gildur-2', 'lauriel-2', 'nurad-4', 'quillen-2', 'sephera-2', 'qi', 'nurad-3', 'nurad-2', 'nakroth-2', 'zip', 'diao-chan-2', 'enzo', 'errol', 'joker', 'payna', 'slimz', 'thane', 'toro', 'veres', 'violet-2', 'wisp', 'yena', 'zill', 'arduin', 'arthur', 'batman', 'capheny', 'darcy', 'elsu', 'florentino', 'gildur', 'ignis', 'wukong', 'yena', 'zanis', 'violet', 'tulen', 'sephera', 'nurad', 'nina', 'lindis', 'liliana', 'lauriel', 'krixi', 'kahlii', 'hayate', 'diao-chan', 'butterfly', 'astrid', 'arum', 'annette', 'amily', 'airi', 'zuka', 'zephys', 'zanis', 'yorn', 'xeniel', 'veres', 'veera', 'tel-annas', 'taara', 'superman', 'skud', 'ryoma', 'roxie', 'quillen', 'omen', 'natalya', 'nakroth', 'lubu']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "banner")
@@ -2400,19 +2429,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'teamlogo': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|buffalo`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|buffalo`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|buffalo`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|buffalo`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|buffalo`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|buffalo`)
                 const style = ['cobra', 'dragon', 'eagle2', 'falcon', 'lion2', 'tiger2', 'bear', 'buffalo', 'eagle', 'lion', 'tiger', 'wolf']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2426,19 +2455,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'companylogo2': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
                 const style = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2452,19 +2481,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'companylogo': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
                 const style = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2478,19 +2507,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'gradientlogo': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|3`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|3`)
                 const style = ['1', '2', '3', '4', '5', '6']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2504,19 +2533,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'pencilsketch': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|icon\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|panda`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|icon\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|panda`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|icon\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|panda`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|icon\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|panda`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|icon\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|panda`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|icon\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|panda`)
                 const style = ['bird', 'butterfly', 'coffee', 'dove', 'leaf', 'like', 'lotus', 'milk-tea', 'panda', 'tree', 'woman', 'bear', 'bull', 'dragon', 'eagle', 'hawk', 'ninja', 'paw', 'rooster', 'sabertooth', 'skull', 'warrior', 'zebra']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "icon")
@@ -2530,19 +2559,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'gunlogogaming': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|m14ebr`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|m14ebr`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|m14ebr`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|m14ebr`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|m14ebr`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|m14ebr`)
                 const style = ['ak47', 'ak47-s', 'an94', 'ar15', 'aug', 'awm', 'g36k', 'm4a1', 'm4-s', 'm14ebr', 'm16', 'm60', 'm82a1', 'mp5', 'scar', 'svd', 'xm8', 'xm1014']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2556,19 +2585,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'banneroffreefire': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|misha`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|misha`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|misha`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|misha`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|misha`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|misha`)
                 const style = ['andrew', 'caroline', 'kelly', 'laura', 'maxim', 'miguel', 'misha', 'moco', 'nikita', 'notora', 'olivia', 'steffi']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2582,19 +2611,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'letterlogos': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|z`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|z`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|z`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|z`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|z`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|z`)
                 const style = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'z']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "thumb")
@@ -2608,19 +2637,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'bannerofoverwatch': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|reinhardt`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|reinhardt`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|reinhardt`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|reinhardt`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|reinhardt`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|reinhardt`)
                 const style = ['widowmaker', 'tracer', 'symmetra', 'sombra', 'soldier76', 'reinhardt', 'reaper', 'orisa', 'mercy', 'mei', 'genji', 'dva', 'doomfist', 'ashe', 'ana']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2634,19 +2663,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'bannerofapex': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|bg3`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|bg3`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bg3`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bg3`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|bg3`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bg3`)
                 const style = ['bg6', 'bg5', 'bg4', 'bg3', 'bg2', 'bg1']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2660,19 +2689,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'bannerofpubg': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|bg2`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|bg2`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bg2`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bg2`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|background\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|bg2`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|background\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|bg2`)
                 const style = ['bg11', 'bg10', 'bg9', 'bg8', 'bg7', 'bg6', 'bg5', 'bg4', 'bg3', 'bg2', 'bg1']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "background")
@@ -2686,19 +2715,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'mascotstyle': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|kitsune`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|kitsune`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|kitsune`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|kitsune`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|kitsune`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|kitsune`)
                 const style = ['dragon-5', 'jet', 'knight', 'skull-3', 'skull-cyborg', 'tiger-4', 'bee-3', 'dragon-4', 'fox-3', 'goat-2', 'kitsune', 'octopus-2', 'piranha', 'wolf', 'bear-2', 'cat', 'ceberus', 'crocodile', 'dinosaur', 'dragon-3', 'eagle-3', 'horse-2', 'husky', 'kraken', 'lynx', 'sabertooh', 'assassin', 'bee', 'cat2', 'demon', 'fox', 'gorilla', 'horus', 'octopus', 'rounin', 'scorpion', 'skull2', 'tiger3', 'tiger2', 'tiger', 'shark', 'sabertooth', 'rooster', 'rhino', 'puma', 'phoenix', 'panther', 'owl', 'lion', 'horse', 'hornet', 'griffin', 'goat', 'fox', 'eagle', 'dragon2', 'dragon', 'devil', 'cobra', 'bull', 'bear', 'monkey', 'warrior', 'rabbit', 'pirates', 'owl2', 'neonwolf', 'lionking', 'godzilla', 'flashwolf', 'fire', 'eagle2', 'dog', 'mask', 'team', 'pubg', 'drift', 'bee2']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "thumb")
@@ -2712,19 +2741,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'logoaccording': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|lynx`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|lynx`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lynx`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lynx`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|lynx`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|lynx`)
                 const style = ['bear2', 'cat2', 'ceberus', 'crocodile', 'dinosaur', 'dragon3', 'eagle3', 'horse2', 'husky', 'kraken', 'lynx', 'sabertooh', 'assassin', 'bee', 'cat', 'demon', 'fox-2', 'gorilla', 'horus', 'octopus', 'rounin', 'scorpion', '-2', 'tiger-3', 'bg-tiger', 'bg-buffalo', 'chicken', 'bull', 'bg-wolf', 'jaguar', 'horse', 'eagle', 'dragon', 'wolver', 'shark', 'sabertooth', 'rhino', 'phoenix', 'lion', 'hornet', 'griffin', 'bear', 'tiger2', 'panther', 'owl', 'monkey', 'goat', 'fox', 'dragon2', 'devil', 'cobra', 'reaper', 'pirates', 'owl2', 'mask', 'fire', 'eagle2', 'chamois', 'neptune', 'parrots', 'samurai']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "thumb")
@@ -2738,19 +2767,19 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             case 'avataroverwatch': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|zenyatta`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|zenyatta`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|zenyatta`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|zenyatta`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
                 var m3 = mon.split("|")[2]
-                if (!m3) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2|thumb\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc|zenyatta`)
+                if (!m3) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2|thumb\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ|zenyatta`)
                 const style = ['mccree', 'mercy', 'zenyatta', 'zarya', 'winston', 'widowmaker', 'tracer', 'torbjorn', 'symmetra', 'sombra', 'soldier76', 'soldier_76', 'roadhog', 'reinhardt', 'reaper2', 'reaper', 'pharah', 'orisa', 'mei', 'lucio', 'junkrat', 'hanzo', 'genji', 'dva', 'bastion', 'ana2', 'ana', 'doomfist', 'bg-1']
                 if (!style.includes(m3)) {
                     getStyle(style.length, "thumb")
@@ -2764,193 +2793,193 @@ ${isSurender ? '' : ``}`.trim()
                     }, 'apikey'))
                     if (!textpro2.ok) throw await textpro2.text()
                     let img = await textpro2.buffer()
-                    alpha.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'ephoto360.jpg', mess.done, m)
                 }
 
             }
             break
             //games 
-            case "tebakgambar": {
-                if (tebakgambar[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case "guessthepic": {
+                if (guessthepicture[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebakgambar[m.chat][0]
+                    quoted: guessthepicture[m.chat][0]
                 })
                 var res = await fetch(api('alfa', '/api/game/' + command, {}, 'apikey'))
                 if (!res.ok) throw res.text()
                 var result = await res.json()
                 console.log("Jawaban: " + result.jawaban)
-                tebakgambar[m.chat] = [
-                    await alpha.sendMessage(m.chat, {
+                guessthepicture[m.chat] = [
+                    await thoppi.sendMessage(m.chat, {
                         image: {
                             url: result.img
                         },
-                        caption: `Silahkan Jawab Soal Di Atas Ini\n\nDeskripsi : ${result.deskripsi}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`
+                        caption: `ᴘʟᴇᴀsᴇ ᴀɴsᴡᴇʀ ᴛʜᴇ ϙᴜᴇsᴛɪᴏɴs ᴀʙᴏᴠᴇ\n\nᴅᴇsᴄʀɪᴘᴛɪᴏɴ : ${result.deskripsi}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`
                     }, {
                         quoted: m
                     }), result, 4999,
                     setTimeout(() => {
-                        if (tebakgambar[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebakgambar',
+                        if (guessthepicture[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guessthepicture',
                                 buttonText: {
-                                    displayText: "Tebak Gambar"
+                                    displayText: "ɢᴜᴇss ᴛʜᴇ ᴘɪᴄ"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
-                            delete tebakgambar[m.chat]
+                            delete guessthepicture[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'tega': {
-                if (!(m.chat in tebakgambar)) return
-                let json = tebakgambar[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', '© ' + reply, '.ytega', 'Dahlah Nyerah Aja✌️', m)
+            case 'guesspic': {
+                if (!(m.chat in guessthepicture)) return
+                let json = guessthepicture[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', '© ' + reply, '.yguess', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ytega': {
-                if (!(m.chat in tebakgambar)) return
-                clearTimeout(tebakgambar[m.chat][3])
-                delete tebakgambar[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebakgambar', 'Soal baru', m)
+            case 'yguesspic': {
+                if (!(m.chat in guessthepicture)) return
+                clearTimeout(guessthepicture[m.chat][3])
+                delete guessthepicture[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guessthepicture', 'New question', m)
             }
             break
-            case "tebakkata": {
-                if (tebakkata[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case "guesstheword": {
+                if (guesstheword[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebakkata[m.chat][0]
+                    quoted: guesstheword[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebakkata', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/guesstheword', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
-                tebakkata[m.chat] = [
-                    await alpha.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                guesstheword[m.chat] = [
+                    await thoppi.sendText(m.chat, `ᴘʟᴇᴀsᴇ ᴀɴsᴡᴇʀ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ ϙᴜᴇsᴛɪᴏɴs\n\n${result.soal}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
-                        if (tebakkata[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebakkata',
+                        if (guesstheword[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guesstheword',
                                 buttonText: {
-                                    displayText: "Tebak Kata"
+                                    displayText: "ɢᴜᴇss ᴛʜᴇ ᴡᴏʀᴅ"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
-                            delete tebakkata[m.chat]
+                            delete guesstheword[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'teka': {
-                if (!(m.chat in tebakkata)) return
-                let json = tebakkata[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yteka', 'Dahlah Nyerah Aja✌️', m)
+            case 'guesswolrd': {
+                if (!(m.chat in guesstheword)) return
+                let json = guesstheword[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.guess', 'ᴊᴜsᴛ ɢɪᴠᴇ ᴜᴘ', m)
             }
             break
-            case 'yteka': {
-                if (!(m.chat in tebakkata)) return
-                clearTimeout(tebakkata[m.chat][3])
-                delete tebakkata[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebakkata', 'Soal baru', m)
+            case 'yguessworld': {
+                if (!(m.chat in guesstheword)) return
+                clearTimeout(guesstheword[m.chat][3])
+                delete guesstheword[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guesstheword', 'New question', m)
             }
             break
-            case "tebakbendera": {
-                if (tebakbendera[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case "guessflag": {
+                if (guesstheflag[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebakbendera[m.chat][0]
+                    quoted: guesstheflag[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebakbendera', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/guesstheflag', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.name)
-                tebakbendera[m.chat] = [
-                    await alpha.sendMessage(m.chat, {
+                guesstheflag[m.chat] = [
+                    await thoppi.sendMessage(m.chat, {
                         image: {
                             url: result.img
                         },
-                        caption: `Gamabar diatas adalah bendera negara?\n\nWaktu : ${(120000 / 1000).toFixed(2)} detik`
+                        caption: `ᴛʜᴇ ᴘɪᴄᴛᴜʀᴇ ᴀʙᴏᴠᴇ ɪs ᴛʜᴇ ᴄᴏᴜɴᴛʀʏ ғʟᴀɢ?\n\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`
                     }, {
                         quoted: m
                     }),
                     result, 4999,
                     setTimeout(() => {
-                        if (tebakbendera[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebakbendera',
+                        if (guesstheflag[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guessflag',
                                 buttonText: {
-                                    displayText: "Tebak Bendera"
+                                    displayText: "ɢᴜᴇss ᴛʜᴇ ғʟᴀɢ"
                                 },
                                 type: 1
                             }], waktuHabis(result.name), footer_text, m)
-                            delete tebakbendera[m.chat]
+                            delete guesstheflag[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'tebe': {
-                if (!(m.chat in tebakbendera)) return
-                let json = tebakbendera[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.name.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytebe', 'Dahlah Nyerah Aja✌️', m)
+            case 'guessflag': {
+                if (!(m.chat in guesstheflag)) return
+                let json = guesstheflag[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.name.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yguessflag', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ytebe': {
-                if (!(m.chat in tebakbendera)) return
-                clearTimeout(tebakbendera[m.chat][3])
-                delete tebakbendera[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebakbendera', 'Soal baru', m)
+            case 'yguessflag': {
+                if (!(m.chat in guesstheflag)) return
+                clearTimeout(guesstheflag[m.chat][3])
+                delete guesstheflag[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guesstheflag', 'New question', m)
             }
             break
-            case 'tebakkalimat': {
-                if (tebakkalimat[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'guessthesentence': {
+                if (guessthesentence[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebakkalimat[m.chat][0]
+                    quoted: guessthesentence[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebakkalimat', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/guessthesentence', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
-                tebakkalimat[m.chat] = [
-                    await alpha.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                guessthesentence[m.chat] = [
+                    await thoppi.sendText(m.chat, `ᴘʟᴇᴀsᴇ ᴀɴsᴡᴇʀ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ ϙᴜᴇsᴛɪᴏɴs\n\n${result.soal}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
-                        if (tebakkalimat[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebakkalimat',
+                        if (guessthesentence[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guessthesentence',
                                 buttonText: {
-                                    displayText: "Tebak Kalimat"
+                                    displayText: "ɢᴜᴇss ᴛʜᴇ sᴇɴᴛᴇɴᴄᴇ"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
-                            delete tebakkalimat[m.chat]
+                            delete guessthesentence[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'tekatu': {
-                if (!(m.chat in tebakkalimat)) return
-                let json = tebakkalimat[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytekatu', 'Dahlah Nyerah Aja✌️', m)
+            case 'guessthesentence': {
+                if (!(m.chat in guessthesentence)) return
+                let json = guessthesentence[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.guessthesentence', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ytekatu': {
-                if (!(m.chat in tebakkalimat)) return
-                clearTimeout(tebakkalimat[m.chat][3])
-                delete tebakkalimat[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebakkalimat', 'Soal baru', m)
+            case 'guesssentence': {
+                if (!(m.chat in guessthesentence)) return
+                clearTimeout(guessthesentence[m.chat][3])
+                delete guessthesentence[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guessthesentence', 'New question', m)
             }
             break
-            case 'tebaksiapa': {
-                if (siapaaku[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'guesswho': {
+                if (siapaaku[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
                     quoted: siapaaku[m.chat][0]
                 })
@@ -2960,13 +2989,13 @@ ${isSurender ? '' : ``}`.trim()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
                 siapaaku[m.chat] = [
-                    await alpha.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                    await thoppi.sendText(m.chat, `ᴘʟᴇᴀsᴇ ᴀɴsᴡᴇʀ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ ϙᴜᴇsᴛɪᴏɴs\n\n${result.soal}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
                         if (siapaaku[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebaksiapa',
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guesswho',
                                 buttonText: {
-                                    displayText: "Tebak Siapa"
+                                    displayText: "ɢᴜᴇss ᴡʜᴏ"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
@@ -2976,230 +3005,230 @@ ${isSurender ? '' : ``}`.trim()
                 ]
             }
             break
-            case 'tesi': {
+            case 'guesswhoo': {
                 if (!(m.chat in siapaaku)) return
                 let json = siapaaku[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytesi', 'Dahlah Nyerah Aja✌️', m)
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytesi', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ytesi': {
+            case 'yguesswho': {
                 if (!(m.chat in siapaaku)) return
                 clearTimeout(siapaaku[m.chat][3])
                 delete siapaaku[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebaksiapa', 'Soal baru', m)
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guesswho', 'New question', m)
             }
             break
-            case 'tebakkabupaten': {
-                if (tebakkabupaten[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'guessthedistrict': {
+                if (guessdistrict[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebakkabupaten[m.chat][0]
+                    quoted: guessdistrict[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebakkabupaten', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/guessdistrict', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.title)
-                tebakkabupaten[m.chat] = [
-                    await alpha.sendMedia(m.chat, result.url, '', m, {
-                        caption: `Gambar Diatas Adalah Gambar dari Kabupaten?\nWaktu : ${(120000 / 1000).toFixed(2)} detik`
+                guessdistrict[m.chat] = [
+                    await thoppi.sendMedia(m.chat, result.url, '', m, {
+                        caption: `ᴛʜᴇ ᴘɪᴄᴛᴜʀᴇ ᴀʙᴏᴠᴇ ɪs ᴀ ᴘɪᴄᴛᴜʀᴇ ᴏғ ᴛʜᴇ ᴅɪsᴛʀɪᴄᴛ?\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`
                     }), result, 4999,
                     setTimeout(() => {
-                        if (tebakkabupaten[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebakkabupaten',
+                        if (guessdistrict[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guessdistrict',
                                 buttonText: {
-                                    displayText: "Tebak Kabupaten"
+                                    displayText: "ɢᴜᴇss ᴅɪsᴛʀɪᴄᴛ"
                                 },
                                 type: 1
                             }], waktuHabis(result.title), footer_text, m)
-                            delete tebakkabupaten[m.chat]
+                            delete guessdistrict[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'tekabu': {
-                if (!(m.chat in tebakkabupaten)) return
-                let json = tebakkabupaten[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.title.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytekabu', 'Dahlah Nyerah Aja✌️', m)
+            case 'guessdistrict': {
+                if (!(m.chat in guessdistrict)) return
+                let json = guessdistrict[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.title.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.guessbu', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ytekabu': {
-                if (!(m.chat in tebakkabupaten)) return
-                clearTimeout(tebakkabupaten[m.chat][3])
-                delete tebakkabupaten[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebakkabupaten', 'Soal baru', m)
+            case 'yguessdistrict': {
+                if (!(m.chat in guessdistrict)) return
+                clearTimeout(guessdistrict[m.chat][3])
+                delete guessdistrict[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guessdistrict', 'New question', m)
             }
-            case 'tebakkota': {
-                if (tebakkota[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'guessthecity': {
+                if (guessthecity[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebakkota[m.chat][0]
+                    quoted: guessthecity[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebakkota', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/guessthecity', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.title)
-                tebakkota[m.chat] = [
-                    await alpha.sendMedia(m.chat, result.url, '', m, {
-                        caption: `Gambar Diatas Adalah Gambar dari Kota?\nWaktu : ${(120000 / 1000).toFixed(2)} detik`
+                guessthecity[m.chat] = [
+                    await thoppi.sendMedia(m.chat, result.url, '', m, {
+                        caption: `ᴛʜᴇ ᴘɪᴄᴛᴜʀᴇ ᴀʙᴏᴠᴇ ɪs ᴀ ᴘɪᴄᴛᴜʀᴇ ᴏғ ᴛʜᴇ ᴄɪᴛʏ?\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`
                     }), result, 4999,
                     setTimeout(() => {
-                        if (tebakkota[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebakkota',
+                        if (guessthecity[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guessthecity',
                                 buttonText: {
-                                    displayText: "Tebak Kota"
+                                    displayText: "ɢᴜᴇss ᴄɪᴛʏ"
                                 },
                                 type: 1
                             }], waktuHabis(result.title), footer_text, m)
-                            delete tebakkota[m.chat]
+                            delete guessthecity[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'tekako': {
-                if (!(m.chat in tebakkota)) return
-                let json = tebakkota[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.title.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytekabu', 'Dahlah Nyerah Aja✌️', m)
+            case 'guesscity': {
+                if (!(m.chat in guessthecity)) return
+                let json = guessthecity[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.title.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.guesscity', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ytekako': {
-                if (!(m.chat in tebakkota)) return
-                clearTimeout(tebakkota[m.chat][3])
-                delete tebakkota[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebakkabupaten', 'Soal baru', m)
+            case 'yguesscity': {
+                if (!(m.chat in guessthecity)) return
+                clearTimeout(guessthecity[m.chat][3])
+                delete guessthecity[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guessdistrict', 'New question', m)
             }
             break
-            case 'tebakkimia': {
-                if (tebakkimia[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'guessthechemistry': {
+                if (guesschemistry[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebakkimia[m.chat][0]
+                    quoted: guesschemistry[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebakkimia', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/guesschemistry', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.unsur)
-                tebakkimia[m.chat] = [
-                    await alpha.sendText(m.chat, `Apa Arti Dari Simbol : *${result.lambang}*?\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                guesschemistry[m.chat] = [
+                    await thoppi.sendText(m.chat, `ᴡʜᴀᴛ ᴅᴏᴇs ᴛʜᴇ sʏᴍʙᴏʟ ᴍᴇᴀɴ : *${result.lambang}*?\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
-                        if (tebakkimia[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebakkimia',
+                        if (guesschemistry[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guesschemistry',
                                 buttonText: {
-                                    displayText: "Tebak Kimia"
+                                    displayText: "ɢᴜᴇss ᴄʜᴇᴍɪsᴛʀʏ"
                                 },
                                 type: 1
                             }], waktuHabis(result.unsur), footer_text, m)
-                            delete tebakkimia[m.chat]
+                            delete guesschemistry[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'teki': {
-                if (!(m.chat in tebakkimia)) return
-                let json = tebakkimia[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.unsur.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yteki', 'Dahlah Nyerah Aja✌️', m)
+            case 'guesschemistry': {
+                if (!(m.chat in guesschemistry)) return
+                let json = guesschemistry[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.unsur.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yteki', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'yteki': {
-                if (!(m.chat in tebakkimia)) return
-                clearTimeout(tebakkimia[m.chat][3])
-                delete tebakkimia[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebakkimia', 'Soal baru', m)
+            case 'yguesschemistry': {
+                if (!(m.chat in guesschemistry)) return
+                clearTimeout(guesschemistry[m.chat][3])
+                delete guesschemistry[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guesschemistry', 'New question', m)
             }
             break
-            case 'tebaklirik': {
-                if (tebaklirik[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'guessthelyrics': {
+                if (guessthelyrics[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebaklirik[m.chat][0]
+                    quoted: guessthelyrics[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebaklirik', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/guessthelyrics', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
-                tebaklirik[m.chat] = [
-                    await alpha.sendText(m.chat, `Ini Adalah Lirik Dari Lagu? : *${result.soal}*?\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                guessthelyrics[m.chat] = [
+                    await thoppi.sendText(m.chat, `ᴛʜᴇsᴇ ᴀʀᴇ ᴛʜᴇ ʟʏʀɪᴄs ᴏғ ᴛʜᴇ sᴏɴɢ🎵 : *${result.soal}*?\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
-                        if (tebaklirik[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebaklirik',
+                        if (guessthelyrics[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.guessthelyrics',
                                 buttonText: {
-                                    displayText: "Tebak Lirik"
+                                    displayText: "ɢᴜᴇss ᴛʜᴇ ʟʏʀɪᴄs"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
-                            delete tebaklirik[m.chat]
+                            delete guessthelyrics[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'teli': {
-                if (!(m.chat in tebaklirik)) return
-                let json = tebaklirik[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yteli', 'Dahlah Nyerah Aja✌️', m)
+            case 'guesslyrics': {
+                if (!(m.chat in guessthelyrics)) return
+                let json = guessthelyrics[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yteli', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'yteli': {
-                if (!(m.chat in tebaklirik)) return
-                clearTimeout(tebaklirik[m.chat][3])
-                delete tebaklirik[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebaklirik', 'Soal baru', m)
+            case 'yguesslyrics': {
+                if (!(m.chat in guessthelyrics)) return
+                clearTimeout(guessthelyrics[m.chat][3])
+                delete guessthelyrics[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.guessthelyrics', 'New question', m)
             }
             break
-            case 'tebaktebakan': {
-                if (tebaktebakan[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'riddles': {
+                if (riddles[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tebaktebakan[m.chat][0]
+                    quoted: riddles[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tebaktebakan', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/riddles', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
-                tebaktebakan[m.chat] = [
-                    await alpha.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                riddles[m.chat] = [
+                    await thoppi.sendText(m.chat, `ᴘʟᴇᴀsᴇ ᴀɴsᴡᴇʀ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ ϙᴜᴇsᴛɪᴏɴs\n\n${result.soal}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
-                        if (tebaktebakan[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tebaktebakan',
+                        if (riddles[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.riddles',
                                 buttonText: {
-                                    displayText: "Tebak Tebakan"
+                                    displayText: "ʀɪᴅᴅʟᴇs"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
-                            delete tebaktebakan[m.chat]
+                            delete riddles[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'teteb': {
-                if (!(m.chat in tebaktebakan)) return
-                let json = tebaktebakan[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yteteb', 'Dahlah Nyerah Aja✌️', m)
+            case 'riddle': {
+                if (!(m.chat in riddles)) return
+                let json = riddles[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.yteteb', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'yteteb': {
-                if (!(m.chat in tebaktebakan)) return
-                clearTimeout(tebaktebakan[m.chat][3])
-                delete tebaktebakan[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tebaktebakan', 'Soal baru', m)
+            case 'yriddles': {
+                if (!(m.chat in riddles)) return
+                clearTimeout(riddles[m.chat][3])
+                delete riddles[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.riddles', 'New question', m)
             }
             break
             case 'caklontong': {
-                if (caklontong[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+                if (caklontong[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
                     quoted: caklontong[m.chat][0]
                 })
@@ -3209,10 +3238,10 @@ ${isSurender ? '' : ``}`.trim()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
                 caklontong[m.chat] = [
-                    await alpha.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                    await thoppi.sendText(m.chat, `ᴘʟᴇᴀsᴇ ᴀɴsᴡᴇʀ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ ϙᴜᴇsᴛɪᴏɴs\n\n${result.soal}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
                         if (caklontong[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
+                            thoppi.sendButtonText(m.chat, [{
                                 buttonId: '.caklontong',
                                 buttonText: {
                                     displayText: "Cak Lontong"
@@ -3228,96 +3257,96 @@ ${isSurender ? '' : ``}`.trim()
             case 'telo': {
                 if (!(m.chat in caklontong)) return
                 let json = caklontong[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytelo', 'Dahlah Nyerah Aja✌️', m)
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytelo', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
             case 'ytelo': {
                 if (!(m.chat in caklontong)) return
                 clearTimeout(caklontong[m.chat][3])
                 delete caklontong[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.caklontong', 'Soal baru', m)
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.caklontong', 'New question', m)
             }
             break
-            case 'susunkata': {
-                if (susunkata[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'arrangewords': {
+                if (arrangewords[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: susunkata[m.chat][0]
+                    quoted: arrangewords[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/susunkata', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/arrangewords', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
-                susunkata[m.chat] = [
-                    await alpha.sendText(m.chat, `*Jawablah Pertanyaan Berikut :*\nSoal : ${result.soal}\nTipe : ${result.tipe}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                arrangewords[m.chat] = [
+                    await thoppi.sendText(m.chat, `*Jawablah Pertanyaan Berikut :*\nSoal : ${result.soal}\nTipe : ${result.tipe}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
-                        if (susunkata[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.susunkata',
+                        if (arrangewords[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.arrangewords',
                                 buttonText: {
-                                    displayText: "Susun Kata"
+                                    displayText: "ᴀʀʀᴀɴɢᴇ ᴡᴏʀᴅs"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
-                            delete susunkata[m.chat]
+                            delete arrangewords[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'tesuka': {
-                if (!(m.chat in susunkata)) return
-                let json = susunkata[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytesuka', 'Dahlah Nyerah Aja✌️', m)
+            case 'arrangeword': {
+                if (!(m.chat in arrangewords)) return
+                let json = arrangewords[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ytesuka', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ytesuka': {
-                if (!(m.chat in susunkata)) return
-                clearTimeout(susunkata[m.chat][3])
-                delete susunkata[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.susunkata', 'Soal baru', m)
+            case 'yarangewords': {
+                if (!(m.chat in arrangewords)) return
+                clearTimeout(arrangewords[m.chat][3])
+                delete arrangewords[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.arrangewords', 'New question', m)
             }
             break
-            case 'tekateki': {
-                if (tekateki[m.chat]) return alpha.sendMessage(m.chat, {
-                    text: "Soal ini belum selesai"
+            case 'puzzles': {
+                if (puzzles[m.chat]) return thoppi.sendMessage(m.chat, {
+                    text: "ᴛʜɪs ϙᴜᴇsᴛɪᴏɴ ɪs ɴᴏᴛ ғɪɴɪsʜᴇᴅ"
                 }, {
-                    quoted: tekateki[m.chat][0]
+                    quoted: puzzles[m.chat][0]
                 })
-                var anu = await fetch(api('alfa', '/api/game/tekateki', {}, 'apikey'))
+                var anu = await fetch(api('alfa', '/api/game/puzzles', {}, 'apikey'))
                 if (!anu.ok) throw anu.text()
                 var result = await anu.json()
                 var result = result.result
                 console.log("Jawaban: " + result.jawaban)
-                tekateki[m.chat] = [
-                    await alpha.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
+                puzzles[m.chat] = [
+                    await thoppi.sendText(m.chat, `ᴘʟᴇᴀsᴇ ᴀɴsᴡᴇʀ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ ϙᴜᴇsᴛɪᴏɴs\n\n${result.soal}\nᴛɪᴍᴇ : ${(120000 / 1000).toFixed(2)} detik`, m), result, 4999,
                     setTimeout(() => {
-                        if (tekateki[m.chat]) {
-                            alpha.sendButtonText(m.chat, [{
-                                buttonId: '.tekateki',
+                        if (puzzles[m.chat]) {
+                            thoppi.sendButtonText(m.chat, [{
+                                buttonId: '.puzzles',
                                 buttonText: {
-                                    displayText: "Teka Teki"
+                                    displayText: "ᴘᴜᴢᴢʟᴇs"
                                 },
                                 type: 1
                             }], waktuHabis(result.jawaban), footer_text, m)
-                            delete tekateki[m.chat]
+                            delete puzzles[m.chat]
                         }
                     }, 120000)
                 ]
             }
             break
-            case 'tete': {
-                if (!(m.chat in tekateki)) return
-                let json = tekateki[m.chat][1]
-                alpha.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ttete', 'Dahlah Nyerah Aja✌️', m)
+            case 'puzzles': {
+                if (!(m.chat in puzzles)) return
+                let json = puzzles[m.chat][1]
+                thoppi.send1ButMes(m.chat, '```' + json.jawaban.replace(/[bcdfghjklmnpqrstvwxyz]/ig, '_') + '```', footer_text, '.ttete', 'ɴᴇᴠᴇʀ ɢɪᴠᴇ ᴜᴘ..🗿', m)
             }
             break
-            case 'ttete': {
-                if (!(m.chat in tekateki)) return
-                clearTimeout(tekateki[m.chat][3])
-                delete tekateki[m.chat]
-                return alpha.send1ButMes(m.chat, 'Payah lu, gitu aja nyerah', footer_text, '.tekateki', 'Soal baru', m)
+            case 'puzzle': {
+                if (!(m.chat in puzzles)) return
+                clearTimeout(puzzles[m.chat][3])
+                delete puzzles[m.chat]
+                return thoppi.send1ButMes(m.chat, 'ʏᴏᴜ sᴜᴄᴋ, ᴅᴏɴ'ᴛ ɢɪᴠᴇ ᴜᴘ', footer_text, '.puzzles', 'New question', m)
             }
             break
             //image Effect
@@ -3356,21 +3385,21 @@ ${isSurender ? '' : ``}`.trim()
             case "rejected":
             case "3000years":
             case "circle": {
-                if (!quoted) return reply(`Kirim/Reply Foto/Sticker Dengan Caption ${prefix + command}`)
+                if (!quoted) return reply(`sᴇɴᴅ ʀᴇᴘʟʏ ᴘʜᴏᴛᴏs/sᴛɪᴄᴋᴇʀ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴ ${prefix + command}`)
                 if (!/webp/.test(mime) && /image/.test(mime)) {
                     reply(mess.wait)
-                    var downDl = await alpha.downloadAndSaveMediaMessage(quoted)
+                    var downDl = await thoppi.downloadAndSaveMediaMessage(quoted)
                     var upDl = await TelegraPh(downDl)
                     let res = await fetch(global.api("alfa", '/api/image-effect/' + command, {
                         url: upDl
                     }, 'apikey'))
                     if (!res.ok) throw await res.text()
                     let img = await res.buffer()
-                    alpha.sendFile(m.chat, img, 'image-effect.jpg', mess.done, m)
+                    thoppi.sendFile(m.chat, img, 'image-effect.jpg', mess.done, m)
                 }
                 else if (/webp/.test(mime)) {
                     reply(mess.wait)
-                    let media = await alpha.downloadAndSaveMediaMessage(quoted)
+                    let media = await thoppi.downloadAndSaveMediaMessage(quoted)
                     let ran = await './image/toimg-110.png'
                     exec(`ffmpeg -i ${media} ${ran}`, async (err) => {
                         if (err) return reply('Eror')
@@ -3380,7 +3409,7 @@ ${isSurender ? '' : ``}`.trim()
                         }, 'apikey'))
                         if (!res.ok) throw await res.text()
                         let img = await res.buffer()
-                        alpha.sendFile(m.chat, img, 'image-effect.jpg', mess.done, m)
+                        thoppi.sendFile(m.chat, img, 'image-effect.jpg', mess.done, m)
                         await fs.unlinkSync(ran)
                     })
                 }
@@ -3399,14 +3428,14 @@ ${isSurender ? '' : ``}`.trim()
                 reply(key)
             }
             break
-            case 'kisahnabi': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} nama nabi\n\nContoh penggunaan:\n${prefix+command} Adam`)
+            case 'prophetstory': {
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} nama nabi\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} Adam`)
                 var asma = await fetch(api('alfa', '/api/islam/' + command, {
                     nabi: q
                 }, 'apikey'))
                 if (!asma.ok) throw asma.text()
                 var data = await asma.json()
-                let key = '*Kisah Nabi*\n\n'
+                let key = '*prophet story*\n\n'
                 key += `• Name : ${data.result.name}\n`
                 key += `• Birth : ${data.result.birth}\n`
                 key += `• Death Age : ${data.result.death_age}\n`
@@ -3415,16 +3444,16 @@ ${isSurender ? '' : ``}`.trim()
                 reply(key)
             }
             break
-            case 'jadwalshalat': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} nama daerah\n\nContoh penggunaan:\n${prefix+command} Makassar`)
+            case 'prayerschedule': {
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} nama daerah\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} Kolkata`)
                 var asma = await fetch(api('alfa', '/api/islam/' + command, {
                     daerah: q
                 }, 'apikey'))
                 if (!asma.ok) throw asma.text()
                 var data = await asma.json()
-                let key = '*Jadwal Shalat *\n\n'
-                key += `• Daerah : ${q}\n\n`
-                key += `• Date : ${moment(new Date()).tz('Asia/Jakarta').locale('id').format('HH:mm:ss DD/MM/YYYY')}\n`
+                let key = '*Prayer* *Schedule*\n\n'
+                key += `• Area : ${q}\n\n`
+                key += `• Date : ${moment(new Date()).tz('Asia/Kolkata').locale('id').format('HH:mm:ss DD/MM/YYYY')}\n`
                 key += `• Subuh : ${data.result.today.Shubuh}\n`
                 key += `• Zuhur : ${data.result.today.Dzuhur}\n`
                 key += `• Ashr : ${data.result.today.Ashr}\n`
@@ -3450,7 +3479,7 @@ ${isSurender ? '' : ``}`.trim()
                 key += `_*Audio sedang dalam di proses pengiriman*_`
                 reply(key)
                 let buff = await getBuffer(short.ayah.audio.primary)
-                alpha.sendMessage(from, {
+                thoppi.sendMessage(from, {
                     audio: {
                         url: short.ayah.audio.primary
                     },
@@ -3461,7 +3490,7 @@ ${isSurender ? '' : ``}`.trim()
             }
             break
             case 'randomquran2': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} juz 1-30\n\nContoh penggunaan:\n${prefix+command} 1`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} juz 1-30\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} 1`)
                 var asma = await fetch(api('alfa', '/api/islam/' + command, {
                     juz: q
                 }, 'apikey'))
@@ -3479,7 +3508,7 @@ ${isSurender ? '' : ``}`.trim()
                 key += `• Tr id : ${short.ayah.translation.id}\n\n`
                 key += `_*Audio sedang dalam di proses pengiriman*_`
                 reply(key)
-                alpha.sendMessage(from, {
+                thoppi.sendMessage(from, {
                     audio: {
                         url: short.ayah.audio.primary
                     },
@@ -3498,7 +3527,7 @@ ${isSurender ? '' : ``}`.trim()
             }
             break
             case 'tafsirsurah': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} nama surah\n\nContoh penggunaan:\n${prefix+command} Al-fatihah`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} nama surah\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} Al-fatihah`)
                 var asma = await fetch(api('alfa', '/api/islam/' + command, {
                     surah: q
                 }, 'apikey'))
@@ -3515,7 +3544,7 @@ ${isSurender ? '' : ``}`.trim()
             }
             break
             case 'alquranaudio': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} surah|ayah\n\nContoh penggunaan:\n${prefix+command} 1|5`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} surah|ayah\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} 1|5`)
                 var mon = args.join(' ')
                 var m1 = mon.split("|")[0]
                 var m2 = mon.split("|")[1]
@@ -3546,7 +3575,7 @@ ${isSurender ? '' : ``}`.trim()
                 key += `• Tafsir short : ${short.tafsir.id.short}\n`
                 key += `• Tafsir long : ${short.tafsir.id.long}\n\n-----------------------------------\n\n`
                 let aud_nya = await getBuffer(short.audio.primary)
-                alpha.sendMessage(from, {
+                thoppi.sendMessage(from, {
                     audio: {
                         url: short.audio.primary
                     },
@@ -3576,7 +3605,7 @@ ${isSurender ? '' : ``}`.trim()
                 let res = await fetch(global.api('alfa', '/api/sfw/' + command, {}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'sfw.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'sfw.jpg', mess.done, m)
             }
             break
             case 'baka':
@@ -3638,15 +3667,15 @@ ${isSurender ? '' : ``}`.trim()
                 let res = await fetch(global.api('alfa', '/api/nsfw/' + command, {}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'nsfw.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'nsfw.jpg', mess.done, m)
             }
             break
             //Photooxy
             case 'battlegrounds-logo':
             case 'battlefield4':
             case 'text-8bit': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
                 mm = args.join(' ')
                 m1 = mm.split("|")[0];
                 m2 = mm.split("|")[1];
@@ -3657,7 +3686,7 @@ ${isSurender ? '' : ``}`.trim()
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'photooxy.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'photooxy.jpg', mess.done, m)
             }
             break
             case 'typography-flower':
@@ -3704,15 +3733,15 @@ ${isSurender ? '' : ``}`.trim()
             case 'shadow-sky':
             case 'text-cup':
             case 'coffecup': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan:\n${prefix+command} zeeoneofc`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan:\n${prefix+command} zeeoneofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/photooxy/' + command, {
                     text: text
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'photooxy.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'photooxy.jpg', mess.done, m)
             }
             break
             //telegram sticker
@@ -3741,7 +3770,7 @@ ${isSurender ? '' : ``}`.trim()
                 let res = await fetch(global.api('alfa', '/api/telegram-sticker/' + command, {}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                let savestik = await alpha.sendImageAsSticker(m.chat, img, m, {
+                let savestik = await thoppi.sendImageAsSticker(m.chat, img, m, {
                     packname: packname,
                     author: author
                 })
@@ -3751,33 +3780,33 @@ ${isSurender ? '' : ``}`.trim()
             //canvas
             case 'ttp':
             case 'attp': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan\n${prefix+command} saya robok anda goblok`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ\n${prefix+command} ANDUPPA`)
                 let res = await fetch(global.api('alfa', '/api/canvas/' + command, {text:text}, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                let encmedia = await alpha.sendMediaAsSticker(m.chat, img, m, {
+                let encmedia = await thoppi.sendMediaAsSticker(m.chat, img, m, {
                     packname: global.packname,
                     author: global.author
                 })
                 await fs.unlinkSync(encmedia)
             }
             break
-            case 'nulis':
-                reply(`*Pilihan Fitur Nulis*
+            case 'write':
+                reply(`*Write Feature Options*
 
-1. ${prefix}nuliskiri
-2. ${prefix}nuliskanan
-3. ${prefix}foliokiri
-4. ${prefix}foliokanan
+1. ${prefix}ᴡʀɪᴛᴇʟᴇғᴛ
+2.${prefix}ᴡʀɪᴛᴇ ɪᴛ ᴅᴏᴡɴ
+3.${prefix}ғᴏʟɪᴏᴋɪʀɪ
+4.${prefix}ғᴏʟɪᴏᴋᴀɴᴀɴ
 
-Contoh:
-${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
+ᴇɢ:-:
+${prefix}nuliskiri  ʜᴜsɴɪ`)
                 break
             case 'foliokiri':
             case 'foliokanan':
-            case 'nuliskanan':
-            case 'nuliskiri': {
-                if (text.length < 2) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan\n${prefix+command} ini tulisan saya`)
+            case 'writeitdown':
+            case 'writeleft': {
+                if (text.length < 2) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ\n${prefix+command} ᴛʜɪs ɪs ᴍʏ ᴡʀɪᴛɪɴɢ`)
                 reply(mess.wait)
                 const tulisan = text
                 let res = await fetch(global.api("alfa", '/api/canvas/' + command, {
@@ -3785,7 +3814,7 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'nulis.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'nulis.jpg', mess.done, m)
             }
             break
             //textpro
@@ -3939,15 +3968,15 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
             case "xmas":
             case "yellow-glass":
             case "yellow-jewelry": {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan:\n${prefix+command} zeeoneofc`)
-                if (text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks\n\nContoh penggunaan:\n${prefix+command} zeeoneofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
+                if (text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
                 reply(mess.wait)
                 let res = await fetch(global.api('alfa', '/api/textpro/' + command, {
                     text: text
                 }, 'apikey'))
                 if (res.status != 200) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'textpro.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'textpro.jpg', mess.done, m)
             }
             break
             case 'horror':
@@ -3976,8 +4005,8 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
             case 'horror2':
             case 'lava':
             case 'bagel': {
-                if (!text) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc`)
-                if (!text.includes('|')) return reply(`Kirim perintah:\n${prefix+command} teks1|teks2\n\nContoh penggunaan:\n${prefix+command} zeeone|ofc`)
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
+                if (!text.includes('|')) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs:\n${prefix+command} teks1|teks2\n\nᴇɢ:- ᴜsᴇ:\n${prefix+command} ʜᴜsɴɪ`)
                 mm = args.join(' ')
                 m1 = mm.split("|")[0];
                 m2 = mm.split("|")[1];
@@ -3988,97 +4017,97 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
                 }, 'apikey'))
                 if (!res.ok) throw await res.text()
                 let img = await res.buffer()
-                alpha.sendFile(m.chat, img, 'textpro.jpg', mess.done, m)
+                thoppi.sendFile(m.chat, img, 'textpro.jpg', mess.done, m)
             }
             break
             //grup
             case 'welcome': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
+                if (!m.isGroup) return reply('📌ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!!')
+                if (!isAdmins) return reply('📌ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
                 if (args[0] === "on") {
-                    if (isWelcome) return reply(`Udah on`)
+                    if (isWelcome) return reply(`ᴀʟʀᴇᴀᴅʏ ᴏɴ`)
                     _welcome.push(m.chat)
                     fs.writeFileSync('./database/welcome.json', JSON.stringify(_welcome, null, 2))
-                    reply('Sukses mengaktifkan welcome di grup ini')
+                    reply('sᴜᴄᴄᴇssғᴜʟʟʏ ᴀᴄᴛɪᴠᴀᴛᴇ ᴡᴇʟᴄᴏᴍᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ')
                 }
                 else if (args[0] === "off") {
                     if (!isWelcome) return reply(`Udah off`)
                     let anu = _welcome.indexOf(m.chat)
                     _welcome.splice(anu, 1)
                     fs.writeFileSync('./database/welcome.json', JSON.stringify(_welcome, null, 2))
-                    reply('Sukses menonaktifkan welcome di grup ini')
+                    reply('sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ ᴡᴇʟᴄᴏᴍᴇ  ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ')
                 }
                 else {
-                    reply(`Kirim perintah ${prefix + command} on/off\n\nContoh: ${prefix + command} on`)
+                    reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs ${prefix + command} on/off\n\nᴇɢ:-: ${prefix + command} on`)
                 }
             }
             break
             case 'left':
             case 'goodbye': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
                 if (args[0] === "on") {
-                    if (isLeft) return reply(`Udah on`)
+                    if (isLeft) return reply(`ᴀʟʀᴇᴀᴅʏ ᴏɴ`)
                     _left.push(m.chat)
                     fs.writeFileSync('./database/left.json', JSON.stringify(_left, null, 2))
-                    reply('Sukses mengaktifkan goodbye di grup ini')
+                    reply('sᴜᴄᴄᴇssғᴜʟʟʏ ᴀᴄᴛɪᴠᴀᴛᴇᴅ ɢᴏᴏᴅʙʏᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ')
                 }
                 else if (args[0] === "off") {
                     if (!isLeft) return reply(`Udah off`)
                     let anu = _left.indexOf(m.chat)
                     _left.splice(anu, 1)
                     fs.writeFileSync('./database/welcome.json', JSON.stringify(_left, null, 2))
-                    reply('Sukses menonaktifkan goodbye di grup ini')
+                    reply('sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ ɢᴏᴏᴅʙʏᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ')
                 }
                 else {
-                    reply(`Kirim perintah ${prefix + command} on/off\n\nContoh: ${prefix + command} on`)
+                    reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs ${prefix + command} on/off\n\nᴇɢ:-: ${prefix + command} on`)
                 }
             }
             break
             case 'setwelcome': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isCreator && !isAdmins) return reply('Fitur Khusus owner!')
-                if (!text) return reply(`Kirim perintah: ${command} *teks_welcome*\n\n_Contoh_\n\n${command} Halo @user, Selamat datang di @group`)
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isCreator && !isAdmins) return reply('ᴛʜɪs ɪs ғᴏʀ ᴀᴅᴍɪɴs ᴀɴᴅ ᴏᴡɴᴇʀ ᴏɴʟʏ!')
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs: ${command} *teks_welcome*\n\n_ᴇɢ:-_\n\n${command} HELLO @user, ENDE MOLDE PERANNAAL \nVILLIKKAN VANNATHA \nELLARUM VARANAM @group`)
                 if (isSetWelcome(m.chat, set_welcome_db)) return reply(`Set welcome already active`)
                 addSetWelcome(text, m.chat, set_welcome_db)
                 reply(`Successfully set welcome!`)
             }
             break
             case 'changewelcome': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isCreator && !isAdmins) return reply('Fitur Khusus owner!')
-                if (!text) return reply(`Kirim perintah: ${command} *teks_welcome*\n\n_Contoh_\n\n${command} Halo @user, Selamat datang di @group`)
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isCreator && !isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴏᴡɴᴇʀs!')
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs: ${command} *teks_welcome*\n\n_ᴇɢ:-_\n\n${command} HELLO @user,ENDE MOLDE PERANNAAL \nVILLIKKAN VANNATHA \nELLARUM VARANAM @group`)
                 if (isSetWelcome(m.chat, set_welcome_db)) {
                     changeSetWelcome(q, m.chat, set_welcome_db)
-                    reply(`Sukses change set welcome teks!`)
+                    reply(`sᴜᴄᴄᴇss ᴄʜᴀɴɢᴇ sᴇᴛ ᴡᴇʟᴄᴏᴍᴇ!`)
                 }
                 else {
                     addSetWelcome(q, m.chat, set_welcome_db)
-                    reply(`Sukses change set welcome teks!`)
+                    reply(`sᴜᴄᴄᴇss ᴄʜᴀɴɢᴇ sᴇᴛ ᴡᴇʟᴄᴏᴍᴇ!`)
                 }
             }
             break
             case 'delsetwelcome': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isCreator && !isAdmins) return reply('Fitur Khusus owner!')
-                if (!isSetWelcome(m.chat, set_welcome_db)) return reply(`Belum ada set welcome di sini..`)
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isCreator && !isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴏᴡɴᴇʀs!')
+                if (!isSetWelcome(m.chat, set_welcome_db)) return reply(`ᴛʜᴇʀᴇ ɪs ɴᴏ ᴡᴇʟᴄᴏᴍᴇ sᴇᴛ ʜᴇʀᴇ ʏᴇᴛ..`)
                 removeSetWelcome(m.chat, set_welcome_db)
-                reply(`Sukses delete set welcome`)
+                reply(`sᴜᴄᴄᴇss ᴅᴇʟᴇᴛᴇ sᴇᴛ ᴡᴇʟᴄᴏᴍᴇ`)
             }
             break
             case 'setleft': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isCreator && !isAdmins) return reply('Fitur Khusus owner!')
-                if (!text) return reply(`Kirim perintah: ${prefix + command} *teks_left*\n\n_Contoh_\n\n${prefix + command} Halo @user, Selamat tinggal dari @group`)
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isCreator && !isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴏᴡɴᴇʀs!')
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs: ${prefix + command} *teks_left*\n\n_ᴇɢ:-_\n\n${prefix + command} PODA @user, POYI PADIKKADA @group`)
                 if (isSetLeft(m.chat, set_left_db)) return reply(`Set left already active`)
                 addSetLeft(q, m.chat, set_left_db)
                 reply(`Successfully set left!`)
             }
             break
             case 'changeleft': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isCreator && !isAdmins) return reply('Fitur Khusus owner!')
-                if (!text) return reply(`Kirim perintah: ${prefix + command} *teks_left*\n\n_Contoh_\n\n${prefix + command} Halo @user, Selamat tinggal dari @group`)
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isCreator && !isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴏᴡɴᴇʀs!')
+                if (!text) return reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs: ${prefix + command} *teks_left*\n\n_ᴇɢ:-_\n\n${prefix + command} PODA @user, POYI PADIKKADA @group`)
                 if (isSetLeft(m.chat, set_left_db)) {
                     changeSetLeft(q, m.chat, set_left_db)
                     reply(`Sukses change set left teks!`)
@@ -4090,70 +4119,69 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
             }
             break
             case 'delsetleft': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isCreator && !isAdmins) return reply('Fitur Khusus owner!')
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isCreator && !isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴏᴡɴᴇʀs!')
                 if (!isSetLeft(m.chat, set_left_db)) return reply(`Belum ada set left di sini..`)
                 removeSetLeft(m.chat, set_left_db)
                 reply(`Sukses delete set left`)
             }
             break
             case 'antiwame': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
-                if (!isBotAdmins) return reply("Jadikan bot sebagai admin terlebih dahulu")
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
+                if (!isBotAdmins) return reply("ᴍᴀᴋᴇ ᴛʜᴇ ʙᴏᴛ ᴀɴ ᴀᴅᴍɪɴ ғɪʀsᴛ")
                 if (args[0] === "on") {
-                    if (isAntiWame) return reply(`Udah aktif`)
+                    if (isAntiWame) return reply(`ɪᴛ's ʙᴇᴇɴ ᴀᴄᴛɪᴠᴇ`)
                     antiwame.push(m.chat)
                     fs.writeFileSync('./database/antiwame.json', JSON.stringify(antiwame, null, 2))
                     reply('Successfully Activate Antiwame In This Group')
                 }
                 else if (args[0] === "off") {
-                    if (!isAntiWame) return reply(`Udah nonaktif`)
+                    if (!isAntiWame) return reply(`It's been deactivated`)
                     let anu = antiwame.indexOf(m.chat)
                     antiwame.splice(anu, 1)
                     fs.writeFileSync('./database/antiwame.json', JSON.stringify(antiwame, null, 2))
-                    reply('Successfully Disabling Antiwame In This Group')
+                    reply('sᴜᴄᴄᴇssғᴜʟʟʏ ᴅɪsᴀʙʟɪɴɢ ᴀɴᴛɪᴡᴀᴍᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ')
                 }
                 else {
-                    reply(`Kirim perintah ${prefix + command} on/off\n\nContoh: ${prefix + command} on`)
+                    reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs ${prefix + command} on/off\n\nᴇɢ:-: ${prefix + command} on`)
                 }
             }
             break
             case 'antiwame2': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
-                if (!isBotAdmins) return reply("Jadikan bot sebagai admin terlebih dahulu")
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
+                if (!isBotAdmins) return reply("ᴍᴀᴋᴇ ᴛʜᴇ ʙᴏᴛ ᴀɴ ᴀᴅᴍɪɴ ғɪʀsᴛ")
                 if (args[0] === "on") {
-                    if (isAntiWame2) return reply(`Udah aktif`)
+                    if (isAntiWame2) return reply(`ɪᴛ's ʙᴇᴇɴ ᴀᴄᴛɪᴠᴇ`)
                     antiwame2.push(m.chat)
                     fs.writeFileSync('./database/antiwame2.json', JSON.stringify(antiwame2, null, 2))
-                    reply('Successfully Activate antiwame2 In This Group')
+                    reply('Successfully Activate Antiwame In This Group')
                 }
                 else if (args[0] === "off") {
-                    if (!isAntiWame2) return reply(`Udah nonaktif`)
+                    if (!isAntiWame2) return reply(`It's been deactivated`)
                     let anu = antiwame2.indexOf(m.chat)
                     antiwame2.splice(anu, 1)
                     fs.writeFileSync('./database/antiwame2.json', JSON.stringify(antiwame2, null, 2))
-                    reply('Successfully Disabling antiwame2 In This Group')
+                    reply('sᴜᴄᴄᴇssғᴜʟʟʏ ᴅɪsᴀʙʟɪɴɢ ᴀɴᴛɪᴡᴀᴍᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ')
                 }
                 else {
-                    reply(`Kirim perintah ${prefix + command} on/off\n\nContoh: ${prefix + command} on`)
+                    reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs ${prefix + command} on/off\n\nᴇɢ:-: ${prefix + command} on`)
                 }
             }
             break
-            case 'open':
-            case 'buka': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
-                if (!isBotAdmins) return reply("Bot bukan admin")
-                alpha.groupSettingUpdate(m.chat, 'not_announcement')
+            case 'open': {
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
+                if (!isBotAdmins) return reply("ʙᴏᴛs ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴs")
+                thoppi.groupSettingUpdate(m.chat, 'not_announcement')
                 const textOpen = await getTextSetOpen(m.chat, set_open);
                 reply(textOpen || `Sukses mengizinkan semua peserta dapat mengirim pesan ke grup ini`)
             }
             break
             case 'antilink': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
                 if (!isBotAdmins) return reply("Bot harus menjadi admin")
                 if (args[0] === "on") {
                     if (isAntiLink) return reply(`Udah aktif`)
@@ -4169,14 +4197,14 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
                     reply('Successfully Disabling Antilink In This Group')
                 }
                 else {
-                    reply(`Kirim perintah ${prefix + command} on/off\n\nContoh: ${prefix + command} on`)
+                    reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs ${prefix + command} on/off\n\nᴇɢ:-: ${prefix + command} on`)
                 }
 
             }
             break
             case 'antilink2': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
                 if (!isBotAdmins) return reply("Bot harus menjadi admin")
                 if (args[0] === "on") {
                     if (isAntiLink2) return reply(`Udah aktif`)
@@ -4192,27 +4220,27 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
                     reply('Successfully Disabling antilink2 In This Group')
                 }
                 else {
-                    reply(`Kirim perintah ${prefix + command} on/off\n\nContoh: ${prefix + command} on`)
+                    reply(`ᴛʏᴘᴇ ʟɪᴋᴇ ᴛʜɪs ${prefix + command} on/off\n\nᴇɢ:-: ${prefix + command} on`)
                 }
 
             }
             break
             case 'close':
             case 'tutup': {
-                if (!m.isGroup) return reply('Fitur Khusus Group!')
-                if (!isAdmins) return reply('Fitur Khusus admin!')
-                if (!isBotAdmins) return reply("Bot bukan admin")
-                alpha.groupSettingUpdate(m.chat, 'announcement')
+                if (!m.isGroup) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘ!')
+                if (!isAdmins) return reply('ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ!')
+                if (!isBotAdmins) return reply("ʙᴏᴛs ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴs")
+                thoppi.groupSettingUpdate(m.chat, 'announcement')
                 const textClose = await getTextSetClose(m.chat, set_close);
-                reply(textClose || `Sukses mengizinkan hanya admin yang dapat mengirim pesan ke grup ini`)
+                reply(textClose || `sᴜᴄᴄᴇss ᴀʟʟᴏᴡᴇᴅ ᴏɴʟʏ ᴀᴅᴍɪɴs ᴛᴏ sᴇɴᴅ ᴍᴇssᴀɢᴇs ᴛᴏ ᴛʜɪs ɢʀᴏᴜᴘ`)
             }
             break
             case 'h':
             case 'hidetag': {
-                if (!m.isGroup) return reply("Khusus grup")
-                if (!(isAdmins || isCreator)) return reply("Fitur khusus admin")
+                if (!m.isGroup) return reply("ɢʀᴏᴜᴘ ᴏɴʟʏ")
+                if (!(isAdmins || isCreator)) return reply("ɪᴛ's ᴏɴʟʏ ғᴏʀ ᴀᴅᴍɪɴ")
                 let tek = m.quoted ? quoted.text : (text ? text : "")
-                alpha.sendMessage(m.chat, {
+                thoppi.sendMessage(m.chat, {
                     text: tek,
                     mentions: participants.map(a => a.id)
                 }, {})
@@ -4223,24 +4251,24 @@ ${prefix}nuliskiri Subscribe Ya YT zeeoneofc`)
          case 's':
          case 'sticker':
          case 'stiker': {
-            if (!quoted) return reply(`Kirim/Reply Gambar/Video Dengan Caption ${prefix + command}\n\nDurasi Sticker Video 1-9 Detik`)
+            if (!quoted) return reply(`sᴇɴᴅ ʀᴇᴘʟʏ ɪᴍᴀɢᴇs/ᴠɪᴅᴇᴏs ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix + command}\n\nᴠɪᴅᴇᴏ sᴛɪᴄᴋᴇʀ ᴅᴜʀᴀᴛɪᴏɴ 19 sᴇᴄᴏɴᴅs`)
             if (/image/.test(mime)) {
                let media = await quoted.download()
-               let encmedia = await alpha.sendImageAsSticker(m.chat, media, m, {
+               let encmedia = await thoppi.sendImageAsSticker(m.chat, media, m, {
                   packname: global.packname,
                   author: global.author
                })
                await fs.unlinkSync(encmedia)
             } else if (/video/.test(mime)) {
-               if ((quoted.msg || quoted).seconds > 11) return reply(`Kirim/Reply Gambar/Video Dengan Caption ${prefix + command}\n\nDurasi Sticker Video 1-9 Detik`)
+               if ((quoted.msg || quoted).seconds > 11) return reply(`sᴇɴᴅ ʀᴇᴘʟʏ ɪᴍᴀɢᴇs/ᴠɪᴅᴇᴏs ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix + command}\n\nᴠɪᴅᴇᴏ sᴛɪᴄᴋᴇʀ ᴅᴜʀᴀᴛɪᴏɴ 19 sᴇᴄᴏɴᴅs`)
                let media = await quoted.download()
-               let encmedia = await alpha.sendVideoAsSticker(m.chat, media, m, {
+               let encmedia = await thoppi.sendVideoAsSticker(m.chat, media, m, {
                   packname: global.packname,
                   author: global.author
                })
                await fs.unlinkSync(encmedia)
             } else {
-               reply(`Kirim/Reply Gambar/Video Dengan Caption ${prefix + command}\n\nDurasi Sticker Video 1-9 Detik`)
+               reply(`sᴇɴᴅ ʀᴇᴘʟʏ ɪᴍᴀɢᴇs/ᴠɪᴅᴇᴏs ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix + command}\n\nᴠɪᴅᴇᴏ sᴛɪᴄᴋᴇʀ ᴅᴜʀᴀᴛɪᴏɴ 19 sᴇᴄᴏɴᴅs`)
             }
          }
          break
